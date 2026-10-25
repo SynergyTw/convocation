@@ -171,16 +171,21 @@ h2{font-size:34px}
 .sigs svg{display:block;width:100%;height:34px;color:var(--ink)}
 .sigs figcaption{padding-top:4px;border-top:1px solid var(--ink-2);font:400 12px/1.25 var(--f-mono);color:var(--ink-2)}
 .sigs small{display:block;font-size:10.5px}
-.seal-btn{position:relative;display:flex;align-items:center;justify-content:center;width:136px;height:136px;margin:12px auto 0;padding:0;
-  border:2px dashed #c9b88a;border-radius:50%;background:transparent;color:var(--ochre);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.seal-btn .dash{font:700 11px/1.35 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);transition:opacity .2s}
-.seal-btn em{display:block;margin-top:2px;font:italic 500 15px var(--f-title);letter-spacing:0;text-transform:none;color:var(--ink)}
-.seal-btn .seal{position:absolute;top:-4px;left:-4px;width:144px;height:144px;opacity:0}
-.seal-btn.pulse{animation:pulse 1.8s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-.seal-btn.signed{border-color:transparent;cursor:default}
-.seal-btn.signed .dash{opacity:0}
-.seal-btn.signed .seal{animation:sceau .6s cubic-bezier(.2,.9,.25,1.25) both}
+.pres{margin-top:16px}
+.pad{position:relative;height:136px;border:1.5px dashed #c9b88a;border-radius:12px;background:#fffcf2;transition:border-color .3s,background-color .3s}
+.pad::after{content:"";position:absolute;left:36px;right:18px;bottom:30px;border-bottom:1.5px solid #ddd2ba;pointer-events:none}
+.pad canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;border-radius:12px;touch-action:none;cursor:crosshair}
+.pad-x{position:absolute;left:14px;bottom:24px;font:700 16px var(--f-mono);color:#b9ab88;pointer-events:none}
+.pad-hint{position:absolute;top:0;left:0;right:0;bottom:0;margin:0;display:flex;align-items:center;justify-content:center;
+  font:italic 500 19px var(--f-title);color:#a99b78;pointer-events:none;transition:opacity .25s}
+.pad.ink .pad-hint{opacity:0}
+.pad.signed{border-color:transparent;background-color:transparent}
+.pad.signed canvas{pointer-events:none;cursor:default}
+.pad .seal{position:absolute;right:-16px;top:-30px;z-index:2;width:116px;height:116px;opacity:0;color:var(--ochre);pointer-events:none}
+.pad.signed .seal{animation:sceau .6s cubic-bezier(.2,.9,.25,1.25) both}
+.pad-cap{display:flex;justify-content:space-between;align-items:center;min-height:32px;margin-top:4px;font:400 12px/1.25 var(--f-mono);color:var(--ink-2)}
+.pad-cap .link{padding:6px 2px;font-size:14px}
+#b-signature:disabled{opacity:.35;cursor:default}
 @keyframes sceau{0%{opacity:0;transform:scale(2.2) rotate(-35deg)}55%{opacity:1;transform:scale(.93) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(-10deg)}}
 .ps{margin:14px 0 0;text-align:center;font:600 26px/1.2 "Caveat","Segoe Print","Bradley Hand",cursive;color:var(--ink);transform:rotate(-2deg)}
 .fin{display:flex;flex-direction:column;gap:12px}
@@ -195,8 +200,7 @@ h2{font-size:34px}
 }
 @media (prefers-reduced-motion:reduce){
   .scene,.say,.members li,.prop .voix{transition-duration:.01s}
-  .appear,.stamp.hit,.seal-btn.signed .seal,.say.boude .av{animation-duration:.01s}
-  .seal-btn.pulse{animation:none}
+  .appear,.stamp.hit,.pad.signed .seal,.say.boude .av{animation-duration:.01s}
 }
 </style>
 </head>
@@ -398,12 +402,18 @@ h2{font-size:34px}
       <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M34 22C38 16 41 26 45 20C48 16 51 25 55 20C58 17 61 24 66 21L70 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 29H74" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><figcaption>Gérard<small>(contraint et forcé)</small></figcaption></figure>
       <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M10 24C12 10 22 8 22 18C22 28 12 28 15 20C18 13 28 15 32 22C36 29 42 26 46 18C49 12 56 13 58 20C60 27 68 26 76 18L110 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>Enzo<small>secrétaire</small></figcaption></figure>
     </div>
-    <button class="seal-btn pulse" id="b-sceau" type="button" aria-label="Apposer le sceau de la présidente">
-      <span class="dash">Sceau de<br>la présidente<em>touche pour signer</em></span>
-      <svg class="seal" viewBox="0 0 144 144" aria-hidden="true"><use href="#sceau" xlink:href="#sceau"/></svg>
-    </button>
+    <div class="pres">
+      <div class="pad" id="pad-zone">
+        <canvas id="pad" aria-label="Zone de signature de la présidente"></canvas>
+        <p class="pad-hint">Signe ici avec ton doigt</p>
+        <span class="pad-x" aria-hidden="true">✕</span>
+        <svg class="seal" viewBox="0 0 144 144" aria-hidden="true"><use href="#sceau" xlink:href="#sceau"/></svg>
+      </div>
+      <div class="pad-cap"><span>La présidente</span><button class="link" id="b-effacer" type="button" hidden>Effacer</button></div>
+    </div>
     <p class="ps" id="ps" hidden>PS&nbsp;: rassure-toi,<br>Gérard ne vient pas.</p>
   </div>
+  <button class="btn" id="b-signature" type="button" disabled>Signer le procès-verbal</button>
   <div class="fin" id="fin" hidden>
     <p class="levee">Séance levée.</p>
     <button class="btn" id="b-copier" type="button">Copier ma réponse</button>
@@ -666,22 +676,91 @@ h2{font-size:34px}
       ? 'Proposé par la présidente' + NB + ': «' + NB + alt + NB + '».'
       : 'Validé par la présidente' + NB + ': ' + prop(choix).pv + '.';
     $('#pv-meteo').textContent = clauseMeteo();
-    signe = false;
-    $('#b-sceau').classList.remove('signed');
-    $('#b-sceau').classList.add('pulse');
     $('#ps').hidden = true;
     $('#fin').hidden = true;
+    $('#b-signature').hidden = false;
     await go('s-pv');
+    preparerPad();
   });
 
-  /* ---------- 5. procès-verbal ---------- */
+  /* ---------- 5. procès-verbal : la signature au doigt ---------- */
+  const pad = $('#pad');
+  const zone = $('#pad-zone');
+  const ctx = pad.getContext('2d');
+  const ENCRE = '#1e2944';
+  let encre = 0;      // longueur déjà tracée, pour activer « Signer »
+  let trait = null;   // le trait en cours
   let signe = false;
-  $('#b-sceau').addEventListener('click', async () => {
-    if (signe) return;
+  function preparerPad() {
+    const r = pad.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    pad.width = Math.max(1, Math.round(r.width * dpr));
+    pad.height = Math.max(1, Math.round(r.height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = 2.6;
+    ctx.strokeStyle = ENCRE;
+    ctx.fillStyle = ENCRE;
+    encre = 0;
+    trait = null;
+    signe = false;
+    zone.classList.remove('ink', 'signed');
+    $('#b-effacer').hidden = true;
+    $('#b-signature').disabled = true;
+  }
+  function point(e) { const r = pad.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+  function debut(p) {
+    trait = { prev: p, mid: p };
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  function suite(p) {
+    if (!trait) return;
+    const m = { x: (trait.prev.x + p.x) / 2, y: (trait.prev.y + p.y) / 2 };
+    ctx.beginPath();
+    ctx.moveTo(trait.mid.x, trait.mid.y);
+    ctx.quadraticCurveTo(trait.prev.x, trait.prev.y, m.x, m.y);
+    ctx.stroke();
+    encre += Math.hypot(p.x - trait.prev.x, p.y - trait.prev.y);
+    trait.prev = p;
+    trait.mid = m;
+    if (encre > 30 && !zone.classList.contains('ink')) {
+      zone.classList.add('ink');
+      $('#b-effacer').hidden = false;
+      $('#b-signature').disabled = false;
+    }
+  }
+  const finTrait = () => { trait = null; };
+  if (window.PointerEvent) {
+    pad.addEventListener('pointerdown', (e) => {
+      if (signe) return;
+      e.preventDefault();
+      try { pad.setPointerCapture(e.pointerId); } catch (err) {}
+      debut(point(e));
+    });
+    pad.addEventListener('pointermove', (e) => {
+      if (!trait) return;
+      e.preventDefault();
+      const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+      (evs.length ? evs : [e]).forEach((ev) => suite(point(ev)));
+    });
+    pad.addEventListener('pointerup', finTrait);
+    pad.addEventListener('pointercancel', finTrait);
+  } else {
+    pad.addEventListener('touchstart', (e) => { if (signe) return; e.preventDefault(); debut(point(e.touches[0])); }, { passive: false });
+    pad.addEventListener('touchmove', (e) => { if (!trait) return; e.preventDefault(); suite(point(e.touches[0])); }, { passive: false });
+    pad.addEventListener('touchend', finTrait);
+  }
+  window.addEventListener('resize', () => { if (!$('#s-pv').hidden && !signe && !encre) preparerPad(); });
+  $('#b-effacer').addEventListener('click', () => { if (!signe) preparerPad(); });
+  $('#b-signature').addEventListener('click', async () => {
+    if (signe || !encre) return;
     signe = true;
-    const s = $('#b-sceau');
-    s.classList.remove('pulse');
-    s.classList.add('signed');
+    zone.classList.add('signed');
+    $('#b-effacer').hidden = true;
+    $('#b-signature').hidden = true;
     buzz([20, 50, 30]);
     await wait(900);
     appear($('#ps'));
