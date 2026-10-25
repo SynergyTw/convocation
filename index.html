@@ -9,7 +9,7 @@
 <title>Convocation</title>
 <meta name="description" content="Le comité JP &amp; Gérard se réunit au sujet de mercredi.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Convocation">
+<meta property="og:title" content="Le site de la semaine · n°2">
 <meta property="og:description" content="Le comité JP &amp; Gérard se réunit au sujet de mercredi.">
 <meta property="og:url" content="https://synergytw.github.io/convocation/">
 <meta property="og:image" content="https://synergytw.github.io/convocation/og.png">
@@ -66,6 +66,7 @@ h2{font-size:34px}
 .emblem{width:50px;height:50px;margin-bottom:6px}
 .org{margin:0;font:700 13px/1.2 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
 .motto{margin:0;font:italic 500 15px/1.3 var(--f-title);color:var(--ink-2)}
+.numero{display:table;margin:0 auto 10px;padding:5px 12px 4px;border-radius:999px;background:var(--lemon);font:700 12px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
 .letter h1{text-align:center;margin:2px 0 16px}
 .meta{margin:0 0 16px;font:400 14px/1.35 var(--f-mono)}
 .meta div{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--line-2)}
@@ -93,7 +94,8 @@ h2{font-size:34px}
 .aside{margin:-8px 0 0;text-align:center;font:italic 500 22px/1.2 var(--f-title)}
 
 /* ---------- séance ---------- */
-.exhibit{margin:14px 0 0;padding:12px 14px;border-left:3px solid var(--lemon);background:#fdf8e4;font:italic 500 20px/1.3 var(--f-title)}
+.rature{margin:0 0 2px;font:600 20px/1.2 var(--f-title);color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:3px}
+.exhibit{margin:12px 0 0;padding:10px 14px;border-left:3px solid var(--lemon);background:#fdf8e4;font:italic 500 18px/1.3 var(--f-title)}
 .exhibit span{display:block;margin-bottom:4px;font:700 11px/1.2 var(--f-mono);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
 .exhibit small{display:block;margin-top:4px;font:400 13px var(--f-body);color:var(--ink-2)}
 .minutes{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
@@ -190,6 +192,8 @@ h2{font-size:34px}
 .ps{margin:14px 0 0;text-align:center;font:600 26px/1.2 "Caveat","Segoe Print","Bradley Hand",cursive;color:var(--ink);transform:rotate(-2deg)}
 .fin{display:flex;flex-direction:column;gap:12px}
 .levee{margin:4px 0 2px;text-align:center;font:800 30px/1.1 var(--f-title)}
+.prochain{margin:-6px 0 6px;text-align:center;font:400 14px/1.4 var(--f-mono);color:var(--ink-2)}
+.prochain small{display:block;font:italic 500 17px/1.3 var(--f-title);color:var(--ink)}
 .fin .hint{margin-top:-2px}
 .fin textarea{width:100%;min-height:76px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:15px/1.4 var(--f-body);color:var(--ink);background:#fff}
 .row{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px}
@@ -324,14 +328,15 @@ h2{font-size:34px}
       <p class="org">Comité JP &amp; Gérard</p>
       <p class="motto">Liberté · Égalité · Rosé</p>
     </div>
+    <p class="numero">Le site de la semaine · n°2</p>
     <h1>Convocation</h1>
     <dl class="meta">
       <div><dt>Objet&nbsp;:</dt><dd>mercredi 28&nbsp;octobre</dd></div>
       <div><dt>Séance&nbsp;:</dt><dd>extraordinaire</dd></div>
       <div><dt>Destinataire&nbsp;:</dt><dd>Clémence<small>(Clémentine pour les intimes)</small></dd></div>
     </dl>
-    <p class="body">Madame la Présidente, le comité se réunit en séance extraordinaire. Votre présence est requise. Votre voix aussi.</p>
-    <p class="ref">Réf.&nbsp;: 23h17-bis</p>
+    <p class="body">Madame la Présidente, comme promis, voici votre site de la semaine. Le comité se réunit. Votre voix est requise.</p>
+    <p class="ref">Réf.&nbsp;: n°1, 23h17</p>
   </div>
   <button class="btn" id="b-entrer" type="button">Entrer en séance</button>
 </section>
@@ -354,11 +359,13 @@ h2{font-size:34px}
 <section class="scene" id="s-carre" hidden>
   <p class="kicker">Ordre du jour · point n°1</p>
   <div class="doc">
-    <h2>Le carré</h2>
-    <p class="exhibit"><span>Pièce jointe</span>«&nbsp;C’est pas si cata&nbsp;»<small>La présidente, le 23&nbsp;octobre</small></p>
+    <p class="rature">Le carré</p>
+    <h2>La nouvelle coupe</h2>
+    <p class="exhibit"><span>Pièce jointe n°1</span>«&nbsp;J’ai plus un poil sur le caillou&nbsp;»<small>La présidente, le 23&nbsp;octobre. Fausse alerte.</small></p>
+    <p class="exhibit"><span>Pièce jointe n°2</span>«&nbsp;C’est pas si cata&nbsp;»<small>La présidente, un peu plus tard. Confirmé.</small></p>
     <div class="vote-zone">
       <ol class="minutes" id="m-carre" aria-live="polite"></ol>
-      <div class="stamp" id="st-carre" hidden>Adopté</div>
+      <div class="stamp" id="st-carre" hidden>Adoptée</div>
     </div>
     <p class="tally" id="t-carre" hidden>2&nbsp;voix pour · 1&nbsp;bouderie</p>
   </div>
@@ -392,10 +399,11 @@ h2{font-size:34px}
     <h2>Procès-verbal</h2>
     <p class="sub" id="pv-date">Séance extraordinaire</p>
     <ol class="articles">
-      <li><b>Point n°1 · Le carré</b>Adopté (2&nbsp;voix pour, 1&nbsp;bouderie).</li>
+      <li><b>Point n°1 · La nouvelle coupe</b>Adoptée (2&nbsp;voix pour, 1&nbsp;bouderie). Ce n’est pas un carré.</li>
       <li><b>Point n°2 · Mercredi 28&nbsp;octobre</b><span id="pv-choix"></span></li>
       <li><b>Clause météo</b><span id="pv-meteo"></span></li>
       <li><b>Article&nbsp;4</b>Les blagues caca restent autorisées (cf.&nbsp;23h17).</li>
+      <li><b>Article&nbsp;5 · Un site par semaine</b>Engagement maintenu. Gérard demande des congés payés.</li>
     </ol>
     <div class="sigs">
       <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M4 26C10 8 18 4 20 16C22 28 26 30 32 18C36 10 40 8 41 18C42 26 48 26 54 16C60 6 70 4 76 14C82 24 92 22 116 8M30 32C50 28 80 30 104 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>JP</figcaption></figure>
@@ -416,6 +424,7 @@ h2{font-size:34px}
   <button class="btn" id="b-signature" type="button" disabled>Signer le procès-verbal</button>
   <div class="fin" id="fin" hidden>
     <p class="levee">Séance levée.</p>
+    <p class="prochain">Prochain site&nbsp;: la semaine prochaine.<small>(Si t’es gentille.)</small></p>
     <button class="btn" id="b-copier" type="button">Copier ma réponse</button>
     <textarea id="copy-txt" readonly hidden aria-label="Ta réponse"></textarea>
     <p class="hint">Colle-la-moi en DM. Le comité attend.</p>
@@ -587,7 +596,7 @@ h2{font-size:34px}
     await wait(950);
     say(m, 'enzo', 'Pour. Évidemment.'); buzz(10);
     await wait(1050);
-    const g = say(m, 'gerard', 'On m’a pas demandé.');
+    const g = say(m, 'gerard', 'On m’avait promis un carré.');
     await wait(450);
     g.classList.add('boude');
     await wait(900);
