@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#f6f1e5">
+<meta name="robots" content="noindex,nofollow">
+<title>Convocation</title>
+<meta name="description" content="Le comité JP &amp; Gérard se réunit au sujet de mercredi.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Convocation">
+<meta property="og:description" content="Le comité JP &amp; Gérard se réunit au sujet de mercredi.">
+<meta property="og:url" content="https://synergytw.github.io/convocation/">
+<meta property="og:image" content="https://synergytw.github.io/convocation/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e2944'/%3E%3Cpath d='M4 17C5.5 17 6 11 11 9.5C14 8.6 18 8.6 21 9.5C26 11 26.5 17 28 17C26.5 17 26 23 21 24.5C18 25.4 14 25.4 11 24.5C6 23 5.5 17 4 17Z' fill='%23f2cf3b'/%3E%3Cpath d='M18.5 9.4C19.5 6.4 22.5 4.8 25.5 5.4C24.5 8 21.5 9.8 18.5 9.4Z' fill='%236a9a42'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Courier+Prime:wght@400;700&family=Figtree:wght@400;500;600;700&family=Fraunces:ital,wght@0,600;0,800;1,500&display=swap">
+<style>
+:root{
+  --paper:#f6f1e5; --sheet:#fffdf8; --ink:#1e2944; --ink-2:#5b6479; --line:#e4dac6; --line-2:#efe8d9;
+  --red:#c33a2f; --lemon:#f2cf3b; --ochre:#a77d06; --sage:#eef1e6; --sage-line:#d9dfcb;
+  --f-title:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"Courier Prime","Courier New",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--paper);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;min-height:100vh;color:var(--ink);font:400 17px/1.45 var(--f-body);-webkit-font-smoothing:antialiased;
+  background:var(--paper) radial-gradient(120% 70% at 50% 0%,#fbf8f0 0%,rgba(251,248,240,0) 70%) no-repeat}
+button{font:inherit;color:inherit}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---------- scènes ---------- */
+.scene{min-height:100vh;min-height:100dvh;max-width:460px;margin:0 auto;
+  padding:calc(26px + env(safe-area-inset-top,0px)) 18px calc(30px + env(safe-area-inset-bottom,0px));
+  display:flex;flex-direction:column;justify-content:center;gap:18px;
+  opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease}
+.scene.on{opacity:1;transform:none}
+.scene.leave{opacity:0;transform:translateY(-10px);transition-duration:.28s}
+.doc{position:relative;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:22px 20px;
+  box-shadow:0 1px 0 rgba(30,41,68,.04),0 16px 34px -18px rgba(30,41,68,.35)}
+.kicker{margin:0;font:700 12px/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+h1,h2{margin:0;font-family:var(--f-title);font-weight:800;line-height:1.05;letter-spacing:-.01em}
+h1{font-size:46px}
+h2{font-size:34px}
+.appear{animation:appear .5s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- boutons ---------- */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;padding:14px 20px;border:0;border-radius:999px;
+  background:var(--ink);color:#fffdf8;font:600 17px/1.1 var(--f-body);text-decoration:none;cursor:pointer;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform .12s ease}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.link{align-self:center;background:none;border:0;padding:10px 8px;color:var(--ink-2);font:500 15px var(--f-body);
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer;touch-action:manipulation}
+
+/* ---------- convocation ---------- */
+.head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;margin:-4px 0 16px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.emblem{width:50px;height:50px;margin-bottom:6px}
+.org{margin:0;font:700 13px/1.2 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.motto{margin:0;font:italic 500 15px/1.3 var(--f-title);color:var(--ink-2)}
+.letter h1{text-align:center;margin:2px 0 16px}
+.meta{margin:0 0 16px;font:400 14px/1.35 var(--f-mono)}
+.meta div{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--line-2)}
+.meta div:first-child{border-top:1px solid var(--line-2)}
+.meta dt{flex:none;width:124px;color:var(--ink-2)}
+.meta dd{margin:0;font-weight:700}
+.meta small{display:block;font-weight:400;color:var(--ink-2);font-size:13px}
+.letter .body{margin:0}
+.ref{margin:14px 0 0;font:400 12px var(--f-mono);color:var(--ink-2);text-align:right}
+
+/* ---------- avatars ---------- */
+.av{display:block;flex:none;border-radius:50%}
+
+/* ---------- membres ---------- */
+.members{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.members li{display:flex;align-items:center;gap:14px;background:var(--sheet);border:1px solid var(--line);border-radius:16px;padding:12px 14px;
+  opacity:0;transform:translateX(-12px);transition:opacity .4s ease,transform .4s ease}
+.members li.in{opacity:1;transform:none}
+.members .av{width:62px;height:62px}
+.members b{display:block;font:700 17px/1.2 var(--f-body)}
+.members span{display:block;color:var(--ink-2);font-size:15px;line-height:1.3;margin-top:2px}
+.members li.excuse{background:transparent;border-style:dashed}
+.members li.excuse.in{opacity:.8}
+.quorum{margin:4px 0 0;font:700 14px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.aside{margin:-8px 0 0;text-align:center;font:italic 500 22px/1.2 var(--f-title)}
+
+/* ---------- séance ---------- */
+.exhibit{margin:14px 0 0;padding:12px 14px;border-left:3px solid var(--lemon);background:#fdf8e4;font:italic 500 20px/1.3 var(--f-title)}
+.exhibit span{display:block;margin-bottom:4px;font:700 11px/1.2 var(--f-mono);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.exhibit small{display:block;margin-top:4px;font:400 13px var(--f-body);color:var(--ink-2)}
+.minutes{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.say{display:flex;align-items:flex-end;gap:10px;opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease}
+.say.in{opacity:1;transform:none}
+.say .av{width:40px;height:40px}
+.say p{margin:0;padding:8px 12px;background:#fff;border:1px solid var(--line);border-radius:14px 14px 14px 4px;font-size:16px;line-height:1.3}
+.say b{display:block;font:700 11px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.say.boude p{font-style:italic;color:var(--ink-2)}
+.say.boude .av{animation:non .8s ease both}
+@keyframes non{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(4deg)}}
+.tally{margin:14px 0 0;font:700 14px var(--f-mono);letter-spacing:.04em;text-align:center}
+
+/* ---------- tampon ---------- */
+.stamp{position:absolute;display:inline-block;padding:7px 14px 6px;border:3px solid currentColor;border-radius:8px;color:var(--red);
+  font:700 24px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;transform:rotate(-10deg);opacity:.88;mix-blend-mode:multiply;pointer-events:none}
+.stamp::before{content:"";position:absolute;top:3px;left:3px;right:3px;bottom:3px;border:1.5px solid currentColor;border-radius:5px}
+.stamp.hit{animation:tampon .55s cubic-bezier(.2,.9,.25,1.25) both}
+@keyframes tampon{0%{opacity:0;transform:scale(2.4) rotate(-24deg)}55%{opacity:1;transform:scale(.92) rotate(-9deg)}100%{opacity:.88;transform:scale(1) rotate(-10deg)}}
+.vote-zone{position:relative}
+#st-carre{top:-4px;right:0}
+
+/* ---------- mercredi ---------- */
+.big{font-size:32px}
+.bulletin{display:flex;gap:12px;align-items:flex-start;background:var(--sage);border:1px solid var(--sage-line);border-radius:16px;padding:12px 14px}
+.bulletin .av{width:42px;height:42px}
+.bulletin b{display:block;font:700 11px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#56624a}
+.bulletin p{margin:3px 0 0;font-size:16px;line-height:1.35}
+.bulletin .verdict{font-weight:700}
+.props{display:flex;flex-direction:column;gap:10px}
+.prop{position:relative;display:grid;grid-template-columns:46px 1fr;column-gap:12px;row-gap:1px;align-items:center;width:100%;text-align:left;
+  padding:12px 14px;background:var(--sheet);border:1.5px solid var(--line);border-radius:16px;cursor:default;color:var(--ink);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:border-color .2s,box-shadow .2s,opacity .25s,transform .12s}
+.prop:disabled{opacity:1;color:var(--ink)}
+.prop .av{width:46px;height:46px;grid-row:1 / span 4;align-self:start}
+.prop .who{font:700 11px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding-right:58px}
+.prop .what{font:700 17px/1.25 var(--f-body)}
+.prop .why{font-size:14px;line-height:1.3;color:var(--ink-2)}
+.prop .dit{margin-top:4px;font:italic 500 15px/1.3 var(--f-title)}
+.prop .voix{position:absolute;top:10px;right:12px;padding:3px 8px;border-radius:999px;background:var(--lemon);font:700 12px/1.2 var(--f-mono);
+  opacity:0;transform:scale(.6);transition:opacity .25s ease,transform .25s ease}
+.prop.voted .voix{opacity:1;transform:none}
+.prop.live{cursor:pointer;border-color:#cdbf9f}
+.prop.live:active{transform:scale(.98)}
+.prop.chosen{padding-bottom:50px;border-color:var(--red);box-shadow:0 0 0 3px rgba(195,58,47,.13)}
+.props.decided .prop:not(.chosen){opacity:.5}
+.prop .stamp{right:14px;bottom:10px;font-size:16px;padding:5px 10px 4px}
+.prop .stamp::before{top:2px;left:2px;right:2px;bottom:2px}
+.prop.alt .emblem-av{width:46px;height:46px;grid-row:1 / span 4;align-self:start}
+.hint{margin:0;text-align:center;color:var(--ink-2);font-size:15px}
+.autre{display:flex;flex-direction:column;gap:10px}
+.autre input{width:100%;min-height:52px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:500 17px var(--f-body)}
+.autre input:focus{outline:none;border-color:var(--ink)}
+
+/* ---------- égalité ---------- */
+.overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:rgba(246,241,229,.95);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.ov-in{width:100%;max-width:420px;display:flex;flex-direction:column;gap:20px;text-align:center}
+.eg{margin:0;font:800 34px/1.1 var(--f-title)}
+.eg small{display:block;margin-top:6px;font:400 16px var(--f-body);color:var(--ink-2)}
+.rule{padding:14px 16px;background:var(--sheet);border:1.5px dashed var(--ink-2);border-radius:12px}
+.rule .art{margin:0 0 4px;font:700 11px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.rule p{margin:0}
+.reveal{margin:0;font:italic 500 34px/1.15 var(--f-title)}
+
+/* ---------- procès-verbal ---------- */
+.pv .org{text-align:center;margin-bottom:6px}
+.pv h2{text-align:center}
+.pv .sub{margin:6px 0 14px;text-align:center;font:400 14px var(--f-mono);color:var(--ink-2)}
+.articles{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
+.articles li{padding:9px 0;border-bottom:1px solid var(--line-2);font-size:15.5px;line-height:1.35}
+.articles b{display:block;margin-bottom:2px;font:700 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.sigs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 6px}
+.sigs figure{margin:0;text-align:center}
+.sigs svg{display:block;width:100%;height:34px;color:var(--ink)}
+.sigs figcaption{padding-top:4px;border-top:1px solid var(--ink-2);font:400 12px/1.25 var(--f-mono);color:var(--ink-2)}
+.sigs small{display:block;font-size:10.5px}
+.seal-btn{position:relative;display:flex;align-items:center;justify-content:center;width:136px;height:136px;margin:12px auto 0;padding:0;
+  border:2px dashed #c9b88a;border-radius:50%;background:transparent;color:var(--ochre);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.seal-btn .dash{font:700 11px/1.35 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);transition:opacity .2s}
+.seal-btn em{display:block;margin-top:2px;font:italic 500 15px var(--f-title);letter-spacing:0;text-transform:none;color:var(--ink)}
+.seal-btn .seal{position:absolute;top:-4px;left:-4px;width:144px;height:144px;opacity:0}
+.seal-btn.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.seal-btn.signed{border-color:transparent;cursor:default}
+.seal-btn.signed .dash{opacity:0}
+.seal-btn.signed .seal{animation:sceau .6s cubic-bezier(.2,.9,.25,1.25) both}
+@keyframes sceau{0%{opacity:0;transform:scale(2.2) rotate(-35deg)}55%{opacity:1;transform:scale(.93) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(-10deg)}}
+.ps{margin:14px 0 0;text-align:center;font:600 26px/1.2 "Caveat","Segoe Print","Bradley Hand",cursive;color:var(--ink);transform:rotate(-2deg)}
+.fin{display:flex;flex-direction:column;gap:12px}
+.levee{margin:4px 0 2px;text-align:center;font:800 30px/1.1 var(--f-title)}
+.fin .hint{margin-top:-2px}
+.fin textarea{width:100%;min-height:76px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:15px/1.4 var(--f-body);color:var(--ink);background:#fff}
+.row{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px}
+
+@media (max-width:360px){
+  h1{font-size:40px} h2{font-size:30px} .big{font-size:28px}
+  .meta{font-size:13px} .meta dt{width:114px} .doc{padding:20px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .scene,.say,.members li,.prop .voix{transition-duration:.01s}
+  .appear,.stamp.hit,.seal-btn.signed .seal,.say.boude .av{animation-duration:.01s}
+  .seal-btn.pulse{animation:none}
+}
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="clipAv"><circle cx="50" cy="50" r="50"/></clipPath>
+
+    <!-- le citron de la présidente -->
+    <symbol id="citron" viewBox="0 0 120 120">
+      <path d="M18 64C23 64 25 46 42 40C53 36 67 36 78 40C95 46 97 64 102 64C97 64 95 82 78 88C67 92 53 92 42 88C25 82 23 64 18 64Z" fill="#f2cf3b" stroke="#c9a51e" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M38 54C45 47 54 45 62 45" fill="none" stroke="#fff6c8" stroke-width="4" stroke-linecap="round"/>
+      <path d="M66 39C70 28 81 22 92 24C88 34 78 40 66 39Z" fill="#6a9a42" stroke="#4f7a2f" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M68 38C75 33 82 29 90 26" fill="none" stroke="#4f7a2f" stroke-width="1.2"/>
+    </symbol>
+
+    <!-- le sceau de la présidente -->
+    <symbol id="sceau" viewBox="0 0 144 144">
+      <path id="arc" d="M72 72m-52 0a52 52 0 1 1 104 0a52 52 0 1 1-104 0" fill="none"/>
+      <circle cx="72" cy="72" r="67" fill="#fff8d6" fill-opacity=".55" stroke="currentColor" stroke-width="3.5"/>
+      <circle cx="72" cy="72" r="41" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <text fill="currentColor" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="12.5" letter-spacing="3.6"><textPath href="#arc" xlink:href="#arc">LA PRÉSIDENTE · A TRANCHÉ · </textPath></text>
+      <use href="#citron" xlink:href="#citron" x="36" y="36" width="72" height="72"/>
+    </symbol>
+
+    <!-- Enzo : secrétaire de séance -->
+    <symbol id="av-enzo" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#d6dcf0"/>
+      <g clip-path="url(#clipAv)">
+        <path d="M10 104Q12 80 50 76Q88 80 90 104Z" fill="#f8f7f2"/>
+        <path d="M42 60L42 76Q50 81 58 76L58 60Z" fill="#e3b18c"/>
+        <path d="M39.5 76.5Q50 84 60.5 76.5" fill="none" stroke="#dedbd1" stroke-width="2"/>
+        <path d="M41.5 77Q50 89 58.5 77" fill="none" stroke="#d6a83a" stroke-width="1.3"/>
+        <ellipse cx="30.5" cy="47" rx="3.6" ry="5.2" fill="#e8b994"/>
+        <ellipse cx="69.5" cy="47" rx="3.6" ry="5.2" fill="#e8b994"/>
+        <ellipse cx="50" cy="46" rx="19.5" ry="22.5" fill="#f2caa7"/>
+        <path d="M30.8 47Q31.5 67 50 69.5Q68.5 67 69.2 47Q67 58 61 60.5Q50 64 39 60.5Q33 58 30.8 47Z" fill="#9b774f" opacity=".85"/>
+        <path d="M43 55.6Q50 53 57 55.6" fill="none" stroke="#9b774f" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+        <path d="M44.5 58.6Q50 62 55.5 58.6" fill="none" stroke="#7a3f33" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M50 45Q53 51 49.5 52.5" fill="none" stroke="#d29b78" stroke-width="1.4" stroke-linecap="round"/>
+        <ellipse cx="42" cy="44" rx="2.1" ry="2.4" fill="#3b2d24"/>
+        <ellipse cx="58" cy="44" rx="2.1" ry="2.4" fill="#3b2d24"/>
+        <path d="M37.5 38.6Q42 36.6 46 38.1" fill="none" stroke="#7d5c3a" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M54 38.1Q58 36.6 62.5 38.6" fill="none" stroke="#7d5c3a" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M29 46Q25 32 32 25Q35 15 46 15Q51 9 58 14Q69 13 71 24Q76 33 71 46Q69 37 64 33Q63 36 60 35Q57 31 52 32Q53 27 48 29Q44 33 40 31Q40 35 36 34Q32 38 29 46Z" fill="#8b6943"/>
+        <path d="M37 20Q43 16 47 21M55 18Q61 16 64 21M32 29Q35 26 38 28" fill="none" stroke="#b08e60" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M47 15Q45 8 50 6Q48 11 52.5 14Z" fill="#8b6943"/>
+      </g>
+    </symbol>
+
+    <!-- JP : vice-président chargé du charme -->
+    <symbol id="av-jp" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#f3d67a"/>
+      <g clip-path="url(#clipAv)">
+        <path d="M8 104Q10 79 50 75Q90 79 92 104Z" fill="#26324f"/>
+        <path d="M42 60L42 76L50 94L58 76L58 60Z" fill="#e3b18c"/>
+        <path d="M40 74L50 91L44.5 94L34 78Z" fill="#3a4a73"/>
+        <path d="M60 74L50 91L55.5 94L66 78Z" fill="#3a4a73"/>
+        <path d="M42 76.5Q50 92 58 76.5" fill="none" stroke="#e0b43c" stroke-width="2.3"/>
+        <circle cx="50" cy="88.5" r="2.8" fill="#e0b43c"/>
+        <ellipse cx="30.5" cy="47" rx="3.6" ry="5.2" fill="#e8b994"/>
+        <ellipse cx="69.5" cy="47" rx="3.6" ry="5.2" fill="#e8b994"/>
+        <ellipse cx="50" cy="46" rx="19.5" ry="22.5" fill="#f2caa7"/>
+        <path d="M30.8 47Q31.5 67 50 69.5Q68.5 67 69.2 47Q67 58 61 60.5Q50 64 39 60.5Q33 58 30.8 47Z" fill="#9b774f" opacity=".85"/>
+        <path d="M43 55.6Q50 53 57 55.6" fill="none" stroke="#9b774f" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+        <path d="M45 59.4Q51.5 61.8 57 57" fill="none" stroke="#7a3f33" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M50 46Q53 51 49.5 52.5" fill="none" stroke="#d29b78" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M37.5 37.8Q42 36.4 46 37.6" fill="none" stroke="#7d5c3a" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M54 35.2Q58.5 32 63 34.4" fill="none" stroke="#7d5c3a" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M35 40.5H47.5Q48 48.6 41.6 48.8Q35.4 48.6 35 40.5Z" fill="#1c1c26"/>
+        <path d="M52.5 40.5H65Q64.6 48.6 58.4 48.8Q52 48.6 52.5 40.5Z" fill="#1c1c26"/>
+        <path d="M47.5 41.6Q50 40 52.5 41.6M32.5 40.6H35M65 40.6H67.5" fill="none" stroke="#1c1c26" stroke-width="1.6"/>
+        <path d="M37.6 42.8L41 42.8M55 42.8L58.4 42.8" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".75"/>
+        <path d="M29.5 44Q27 24 42 18Q52 14 62 17Q73 22 70.5 44Q68 32 60 29Q50 26 41 29Q32 32 29.5 44Z" fill="#8b6943"/>
+        <path d="M37 23Q49 17 63 22" fill="none" stroke="#c9a676" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M78 27l1.6 4.2 4.2 1.6-4.2 1.6-1.6 4.2-1.6-4.2-4.2-1.6 4.2-1.6z" fill="#fff"/>
+      </g>
+    </symbol>
+
+    <!-- Gérard : doyen, rarement consulté -->
+    <symbol id="av-gerard" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#cdd6bd"/>
+      <g clip-path="url(#clipAv)">
+        <path d="M8 104Q10 79 50 75Q90 79 92 104Z" fill="#a8855a"/>
+        <path d="M42 60L42 76L50 98L58 76L58 60Z" fill="#f4f1e8"/>
+        <path d="M42 60L42 74Q50 79 58 74L58 60Z" fill="#e3b18c"/>
+        <path d="M42.5 74.5L47.5 82L50 77.5ZM57.5 74.5L52.5 82L50 77.5Z" fill="#e2ddcf"/>
+        <path d="M42.5 75L50 98M57.5 75L50 98" stroke="#8d6d45" stroke-width="1.8"/>
+        <circle cx="50" cy="95" r="1.4" fill="#5e4a30"/>
+        <ellipse cx="30.5" cy="47" rx="3.6" ry="5.2" fill="#e8b994"/>
+        <ellipse cx="69.5" cy="47" rx="3.6" ry="5.2" fill="#e8b994"/>
+        <ellipse cx="50" cy="46" rx="19.5" ry="22.5" fill="#f2caa7"/>
+        <path d="M30.8 47Q31.5 67 50 69.5Q68.5 67 69.2 47Q67 58 61 60.5Q50 64 39 60.5Q33 58 30.8 47Z" fill="#bdb8ae" opacity=".95"/>
+        <path d="M39.5 55.4Q45 50.4 50 53.6Q55 50.4 60.5 55.4Q56 59 50 56.8Q44 59 39.5 55.4Z" fill="#a9a49b"/>
+        <path d="M45 61.6Q50 58.4 55 61.6" fill="none" stroke="#7a3f33" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M50 45.5Q53 50.5 49.5 52" fill="none" stroke="#d29b78" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="42" cy="44.6" r="1.8" fill="#3b2d24"/>
+        <circle cx="58" cy="44.6" r="1.8" fill="#3b2d24"/>
+        <circle cx="42" cy="44.6" r="6" fill="#fff" fill-opacity=".18" stroke="#4a4038" stroke-width="1.5"/>
+        <circle cx="58" cy="44.6" r="6" fill="#fff" fill-opacity=".18" stroke="#4a4038" stroke-width="1.5"/>
+        <path d="M48 44.2Q50 42.6 52 44.2M36 44H30.8M64 44H69.2" fill="none" stroke="#4a4038" stroke-width="1.5"/>
+        <path d="M35.5 35.4Q41 34.8 46.6 38.4" fill="none" stroke="#a9a49b" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M53.4 38.4Q59 34.8 64.5 35.4" fill="none" stroke="#a9a49b" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M29.6 46Q28 36 32 31Q33 37 35.5 39.5ZM70.4 46Q72 36 68 31Q67 37 64.5 39.5Z" fill="#bdb8ae"/>
+        <g transform="rotate(-8 50 24)">
+          <ellipse cx="50" cy="27" rx="23.5" ry="7" fill="#2c2c36"/>
+          <path d="M27 27Q29 14 50 12.5Q71 14 73 27Z" fill="#2c2c36"/>
+          <path d="M50 12.8L51.4 7.6" stroke="#2c2c36" stroke-width="2.6" stroke-linecap="round"/>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 1. La convocation -->
+<section class="scene on" id="s-convoc">
+  <div class="doc letter">
+    <div class="head">
+      <svg class="emblem" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="none" stroke="#1e2944" stroke-width="3"/><circle cx="60" cy="60" r="49" fill="none" stroke="#1e2944" stroke-width="1"/><use href="#citron" xlink:href="#citron" x="16" y="14" width="88" height="88"/></svg>
+      <p class="org">Comité JP &amp; Gérard</p>
+      <p class="motto">Liberté · Égalité · Rosé</p>
+    </div>
+    <h1>Convocation</h1>
+    <dl class="meta">
+      <div><dt>Objet&nbsp;:</dt><dd>mercredi 28&nbsp;octobre</dd></div>
+      <div><dt>Séance&nbsp;:</dt><dd>extraordinaire</dd></div>
+      <div><dt>Destinataire&nbsp;:</dt><dd>Clémence<small>(Clémentine pour les intimes)</small></dd></div>
+    </dl>
+    <p class="body">Madame la Présidente, le comité se réunit en séance extraordinaire. Votre présence est requise. Votre voix aussi.</p>
+    <p class="ref">Réf.&nbsp;: 23h17-bis</p>
+  </div>
+  <button class="btn" id="b-entrer" type="button">Entrer en séance</button>
+</section>
+
+<!-- 2. Les membres -->
+<section class="scene" id="s-membres" hidden>
+  <p class="kicker">Membres présents</p>
+  <ul class="members">
+    <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-jp" xlink:href="#av-jp"/></svg><div><b>Jean-Pierre, dit JP</b><span>Vice-président chargé du charme</span></div></li>
+    <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-gerard" xlink:href="#av-gerard"/></svg><div><b>Gérard</b><span>Doyen. Rarement consulté.</span></div></li>
+    <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-enzo" xlink:href="#av-enzo"/></svg><div><b>Enzo</b><span>Secrétaire de séance</span></div></li>
+    <li class="excuse"><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#ece6d8"/><ellipse cx="55" cy="64" rx="26" ry="15" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M75 70Q86 66 81 55Q79 62 70 64" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M26 50L27 37L35 44Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M40 44L47 36L49 49Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><circle cx="37" cy="54" r="13" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M30 54q3 2.4 6 0M38.5 54q3 2.4 6 0" fill="none" stroke="#1e2944" stroke-width="1.8" stroke-linecap="round"/><path d="M35.5 58.6q1.6 1.3 3.2 0" fill="none" stroke="#1e2944" stroke-width="1.4" stroke-linecap="round"/><text x="62" y="37" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="15" fill="#5b6479">z</text><text x="72" y="27" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="11" fill="#5b6479">z</text></svg><div><b>Skouat</b><span>Excusé (sieste)</span></div></li>
+  </ul>
+  <p class="quorum" id="quorum" hidden>Quorum atteint.</p>
+  <p class="aside" id="aside" hidden>(Les trois, c’est moi.)</p>
+  <button class="btn" id="b-ouvrir" type="button" hidden>Ouvrir la séance</button>
+</section>
+
+<!-- 3. Point n°1 : le carré -->
+<section class="scene" id="s-carre" hidden>
+  <p class="kicker">Ordre du jour · point n°1</p>
+  <div class="doc">
+    <h2>Le carré</h2>
+    <p class="exhibit"><span>Pièce jointe</span>«&nbsp;C’est pas si cata&nbsp;»<small>La présidente, le 23&nbsp;octobre</small></p>
+    <div class="vote-zone">
+      <ol class="minutes" id="m-carre" aria-live="polite"></ol>
+      <div class="stamp" id="st-carre" hidden>Adopté</div>
+    </div>
+    <p class="tally" id="t-carre" hidden>2&nbsp;voix pour · 1&nbsp;bouderie</p>
+  </div>
+  <button class="btn" id="b-vote1" type="button">Procéder au vote</button>
+  <button class="btn" id="b-suivant" type="button" hidden>Point suivant</button>
+</section>
+
+<!-- 4. Point n°2 : mercredi -->
+<section class="scene" id="s-mercredi" hidden>
+  <p class="kicker">Ordre du jour · point n°2</p>
+  <h2 class="big">Mercredi 28&nbsp;octobre, l’après-midi</h2>
+  <div class="bulletin">
+    <svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-gerard" xlink:href="#av-gerard"/></svg>
+    <div><b>Bulletin météo de Gérard</b><p id="meteo-txt">Gérard cherche ses lunettes…</p><p class="verdict" id="meteo-verdict" hidden></p></div>
+  </div>
+  <p class="hint" id="hint" hidden>Touche ta proposition préférée.</p>
+  <div class="props" id="props"></div>
+  <button class="link" id="b-autre" type="button" hidden>Aucune ne me va</button>
+  <form class="autre" id="f-autre" hidden>
+    <input id="i-autre" type="text" maxlength="80" autocomplete="off" placeholder="Ta proposition" aria-label="Ta proposition">
+    <button class="btn ghost" type="submit">Proposer</button>
+  </form>
+  <button class="btn" id="b-vote2" type="button">Passer au vote</button>
+  <button class="btn" id="b-signer" type="button" hidden>Signer le procès-verbal</button>
+</section>
+
+<!-- 5. Le procès-verbal -->
+<section class="scene" id="s-pv" hidden>
+  <div class="doc pv">
+    <p class="org">Comité JP &amp; Gérard</p>
+    <h2>Procès-verbal</h2>
+    <p class="sub" id="pv-date">Séance extraordinaire</p>
+    <ol class="articles">
+      <li><b>Point n°1 · Le carré</b>Adopté (2&nbsp;voix pour, 1&nbsp;bouderie).</li>
+      <li><b>Point n°2 · Mercredi 28&nbsp;octobre</b><span id="pv-choix"></span></li>
+      <li><b>Clause météo</b><span id="pv-meteo"></span></li>
+      <li><b>Article&nbsp;4</b>Les blagues caca restent autorisées (cf.&nbsp;23h17).</li>
+    </ol>
+    <div class="sigs">
+      <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M4 26C10 8 18 4 20 16C22 28 26 30 32 18C36 10 40 8 41 18C42 26 48 26 54 16C60 6 70 4 76 14C82 24 92 22 116 8M30 32C50 28 80 30 104 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>JP</figcaption></figure>
+      <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M34 22C38 16 41 26 45 20C48 16 51 25 55 20C58 17 61 24 66 21L70 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 29H74" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><figcaption>Gérard<small>(contraint et forcé)</small></figcaption></figure>
+      <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M10 24C12 10 22 8 22 18C22 28 12 28 15 20C18 13 28 15 32 22C36 29 42 26 46 18C49 12 56 13 58 20C60 27 68 26 76 18L110 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>Enzo<small>secrétaire</small></figcaption></figure>
+    </div>
+    <button class="seal-btn pulse" id="b-sceau" type="button" aria-label="Apposer le sceau de la présidente">
+      <span class="dash">Sceau de<br>la présidente<em>touche pour signer</em></span>
+      <svg class="seal" viewBox="0 0 144 144" aria-hidden="true"><use href="#sceau" xlink:href="#sceau"/></svg>
+    </button>
+    <p class="ps" id="ps" hidden>PS&nbsp;: rassure-toi,<br>Gérard ne vient pas.</p>
+  </div>
+  <div class="fin" id="fin" hidden>
+    <p class="levee">Séance levée.</p>
+    <button class="btn" id="b-copier" type="button">Copier ma réponse</button>
+    <textarea id="copy-txt" readonly hidden aria-label="Ta réponse"></textarea>
+    <p class="hint">Colle-la-moi en DM. Le comité attend.</p>
+    <a class="btn ghost" href="https://www.instagram.com/enz0mgn/" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14.4" cy="5.6" r="1" fill="currentColor"/></svg>@enz0mgn</a>
+    <div class="row"><button class="link" id="b-changer" type="button">Changer d’avis</button><button class="link" id="b-rejouer" type="button">Rejouer la séance</button></div>
+  </div>
+</section>
+
+<!-- Égalité : la présidente tranche -->
+<div class="overlay" id="egalite" role="dialog" aria-modal="true" aria-labelledby="eg-t" hidden>
+  <div class="ov-in">
+    <p class="kicker">Résultat du vote</p>
+    <p class="eg" id="eg-t">Égalité parfaite.<small>Une voix partout.</small></p>
+    <div class="rule" id="rule" hidden><p class="art">Règlement, article&nbsp;3</p><p>En cas d’égalité, la présidente tranche.</p></div>
+    <p class="reveal" id="reveal" hidden>La présidente,<br>c’est toi.</p>
+    <button class="btn" id="b-trancher" type="button" hidden>Je tranche</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const NB = ' ';  // espace insécable avant :
+  const reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const buzz = (p) => { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} };
+  const hash = location.hash;
+  const NOMS = { jp: 'JP', gerard: 'Gérard', enzo: 'Enzo' };
+  const ORDRE = ['jp', 'gerard', 'enzo'];
+
+  /* ---------- outils ---------- */
+  async function go(id) {
+    const cur = document.querySelector('.scene.on');
+    if (cur) {
+      cur.classList.add('leave');
+      await wait(reduce ? 0 : 280);
+      cur.classList.remove('on', 'leave');
+      cur.hidden = true;
+    }
+    const sc = document.getElementById(id);
+    sc.hidden = false;
+    void sc.offsetWidth;
+    sc.classList.add('on');
+    window.scrollTo(0, 0);
+    return sc;
+  }
+  function appear(el) { el.hidden = false; el.classList.remove('appear'); void el.offsetWidth; el.classList.add('appear'); return el; }
+  function stamp(el) { el.hidden = false; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit'); buzz(25); }
+  const avatar = (k) => '<svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-' + k + '" xlink:href="#av-' + k + '"/></svg>';
+  function say(list, k, text) {
+    const li = document.createElement('li');
+    li.className = 'say';
+    li.innerHTML = avatar(k) + '<p><b></b><span></span></p>';
+    li.querySelector('b').textContent = NOMS[k];
+    li.querySelector('span').textContent = text;
+    list.appendChild(li);
+    requestAnimationFrame(() => requestAnimationFrame(() => li.classList.add('in')));
+    return li;
+  }
+  function dateJour() {
+    try { return new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }); }
+    catch (e) { return 'jour'; }
+  }
+  const maj = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+  /* ---------- la météo de mercredi après-midi (Open-Meteo, sans clé) ---------- */
+  const METEO = 'https://api.open-meteo.com/v1/forecast?latitude=45.764&longitude=4.8357'
+    + '&hourly=temperature_2m,apparent_temperature,precipitation_probability,precipitation,weather_code'
+    + '&timezone=Europe%2FParis&start_date=2026-10-28&end_date=2026-10-28';
+  let meteo; // undefined : en attente ; null : pas de réponse ; objet : la prévision de 14 h à 18 h
+  function ciel(c) {
+    if (c === 0) return 'ciel dégagé';
+    if (c <= 2) return 'quelques nuages';
+    if (c === 3) return 'ciel couvert';
+    if (c === 45 || c === 48) return 'brouillard';
+    if (c >= 51 && c <= 57) return 'bruine';
+    if (c >= 61 && c <= 67) return 'pluie';
+    if (c >= 71 && c <= 77) return 'neige';
+    if (c >= 80 && c <= 82) return 'averses';
+    if (c >= 85 && c <= 86) return 'averses de neige';
+    if (c >= 95) return 'orage';
+    return 'temps incertain';
+  }
+  function bulletin() {
+    if (meteo === undefined) return { txt: 'Gérard cherche ses lunettes…', verdict: '' };
+    if (meteo === null) return { txt: 'Gérard n’a pas réussi à ouvrir l’appli météo.', verdict: 'Le comité avisera.' };
+    const m = meteo;
+    const c = ciel(m.code);
+    const precip = ['bruine', 'pluie', 'neige', 'averses', 'averses de neige', 'orage'].indexOf(c) >= 0;
+    const txt = 'Mercredi après-midi à Lyon' + NB + ': ' + m.t + NB + '°C (ressenti ' + m.ressenti + NB + '°C), '
+      + (m.mouille ? (precip ? c + ' au programme.' : 'risque de pluie.') : c + ', pas de pluie prévue.');
+    let verdict;
+    if (m.mouille) verdict = 'Il pleuvra. Gérard propose qu’on reste au sec.';
+    else if (m.t <= 6) verdict = 'Gérard exige écharpe, bonnet et gants.';
+    else if (m.t <= 13) verdict = 'Gérard exige une écharpe.';
+    else if (m.t <= 18) verdict = 'Doux. Gérard cherche quand même de quoi râler.';
+    else verdict = 'Gérard n’a rien à redire, et ça l’agace.';
+    return { txt: txt, verdict: verdict };
+  }
+  function clauseMeteo() {
+    if (!meteo) return 'Gérard avisera.';
+    if (meteo.mouille) return 'Parapluie obligatoire (Gérard en a un, il ne le prête pas).';
+    if (meteo.t <= 13) return 'Écharpe obligatoire (Gérard a insisté).';
+    if (meteo.t <= 18) return 'Rien à signaler (Gérard proteste quand même).';
+    return 'Grand beau (Gérard boude).';
+  }
+
+  /* ---------- les propositions du comité ---------- */
+  const PROPS = {
+    jp: { qui: 'JP propose', quoi: 'Un verre dans un bar cosy', pourquoi: 'Coin canapé, charme au maximum.', pv: 'un verre dans un bar cosy', dit: 'Moi.' },
+    gerard: { qui: 'Gérard propose', quoi: 'Un ciné', pourquoi: 'Au chaud, assis, et personne ne parle.', pv: 'un ciné', dit: 'Moi. Évidemment.' },
+    enzo: { qui: 'Enzo propose', quoi: 'Une balade sur les quais', pourquoi: 'Le plus beau fond d’écran de Lyon.', pv: 'une balade sur les quais', dit: 'Bah… moi, du coup.' },
+  };
+  function prop(k) {
+    if (k !== 'enzo') return PROPS[k];
+    if (meteo && meteo.mouille) return { qui: 'Enzo propose', quoi: 'Un resto, au sec', pourquoi: 'Gérard a vu la météo.', pv: 'un resto, au sec', dit: 'Bah… moi, du coup.' };
+    if (meteo && meteo.t <= 13) return Object.assign({}, PROPS.enzo, { pourquoi: 'Le plus beau fond d’écran de Lyon. Gérard prête son écharpe.' });
+    return PROPS.enzo;
+  }
+  let voteFait = false;
+  let choix = null;
+  let alt = '';
+  const carte = (k) => document.querySelector('.prop[data-k="' + k + '"]');
+  function construireCartes() {
+    const box = $('#props');
+    box.innerHTML = '';
+    ORDRE.forEach((k) => {
+      const p = prop(k);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'prop';
+      b.dataset.k = k;
+      b.disabled = true;
+      b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = avatar(k) + '<span class="who"></span><span class="what"></span><span class="why"></span>'
+        + '<span class="dit" hidden></span><span class="voix">1 voix</span><span class="stamp" hidden>Validé</span>';
+      b.querySelector('.who').textContent = p.qui;
+      b.querySelector('.what').textContent = p.quoi;
+      b.querySelector('.why').textContent = p.pourquoi;
+      box.appendChild(b);
+    });
+  }
+  function onMeteo() {
+    const b = bulletin();
+    $('#meteo-txt').textContent = b.txt;
+    $('#meteo-verdict').textContent = b.verdict;
+    $('#meteo-verdict').hidden = !b.verdict;
+    if (!voteFait) construireCartes();
+  }
+
+  /* ---------- 1. convocation ---------- */
+  $('#b-entrer').addEventListener('click', async () => {
+    buzz(15);
+    await go('s-membres');
+    const rows = document.querySelectorAll('#s-membres .members li');
+    for (let i = 0; i < rows.length; i++) { await wait(i ? 650 : 250); rows[i].classList.add('in'); }
+    await wait(900); appear($('#quorum'));
+    await wait(1000); appear($('#aside'));
+    await wait(1100); appear($('#b-ouvrir'));
+  });
+
+  /* ---------- 2. membres ---------- */
+  $('#b-ouvrir').addEventListener('click', () => go('s-carre'));
+
+  /* ---------- 3. le carré ---------- */
+  $('#b-vote1').addEventListener('click', async () => {
+    $('#b-vote1').hidden = true;
+    const m = $('#m-carre');
+    say(m, 'jp', 'Pour.'); buzz(10);
+    await wait(950);
+    say(m, 'enzo', 'Pour. Évidemment.'); buzz(10);
+    await wait(1050);
+    const g = say(m, 'gerard', 'On m’a pas demandé.');
+    await wait(450);
+    g.classList.add('boude');
+    await wait(900);
+    stamp($('#st-carre'));
+    await wait(500); appear($('#t-carre'));
+    await wait(700); appear($('#b-suivant'));
+  });
+  $('#b-suivant').addEventListener('click', () => go('s-mercredi'));
+
+  /* ---------- 4. mercredi ---------- */
+  $('#b-vote2').addEventListener('click', async () => {
+    if (voteFait) return;
+    voteFait = true;
+    $('#b-vote2').hidden = true;
+    for (let i = 0; i < ORDRE.length; i++) {
+      const k = ORDRE[i];
+      const c = carte(k);
+      const d = c.querySelector('.dit');
+      d.textContent = '«' + NB + prop(k).dit + NB + '»';
+      d.hidden = false;
+      c.classList.add('voted');
+      buzz(10);
+      await wait(1000);
+    }
+    await wait(400);
+    const ov = $('#egalite');
+    appear(ov);
+    await wait(1300); appear($('#rule'));
+    await wait(1700); appear($('#reveal')); buzz([30, 60, 30]);
+    await wait(1100); appear($('#b-trancher'));
+  });
+  $('#b-trancher').addEventListener('click', () => {
+    $('#egalite').hidden = true;
+    document.querySelectorAll('.prop').forEach((c) => { c.disabled = false; c.classList.add('live'); });
+    appear($('#hint'));
+    appear($('#b-autre'));
+    $('#hint').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  function marquer(k) {
+    document.querySelectorAll('.prop').forEach((c) => {
+      const on = c.dataset.k === k;
+      c.classList.toggle('chosen', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      const st = c.querySelector('.stamp');
+      if (on) stamp(st); else st.hidden = true;
+    });
+    $('#props').classList.toggle('decided', !!k);
+    appear($('#b-signer'));
+    setTimeout(() => $('#b-signer').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }), 350);
+  }
+  $('#props').addEventListener('click', (e) => {
+    const c = e.target.closest('.prop');
+    if (!c || !c.classList.contains('live')) return;
+    choix = c.dataset.k;
+    alt = '';
+    const old = document.querySelector('.prop.alt');
+    if (old) old.remove();
+    marquer(choix);
+  });
+  $('#b-autre').addEventListener('click', () => { appear($('#f-autre')); $('#i-autre').focus(); });
+  $('#f-autre').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = $('#i-autre').value.trim();
+    if (!v) { $('#i-autre').focus(); return; }
+    choix = 'autre';
+    alt = v;
+    let c = document.querySelector('.prop.alt');
+    if (!c) {
+      c = document.createElement('button');
+      c.type = 'button';
+      c.className = 'prop alt live';
+      c.dataset.k = 'autre';
+      c.innerHTML = '<svg class="emblem-av" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="58" fill="#fdf3c4"/><use href="#citron" xlink:href="#citron" x="14" y="12" width="92" height="92"/></svg>'
+        + '<span class="who">La présidente propose</span><span class="what"></span><span class="stamp" hidden>Validé</span>';
+      $('#props').appendChild(c);
+    }
+    c.querySelector('.what').textContent = v;
+    $('#i-autre').blur();
+    $('#f-autre').hidden = true;
+    marquer('autre');
+  });
+  $('#b-signer').addEventListener('click', async () => {
+    $('#pv-date').textContent = 'Séance extraordinaire du ' + dateJour();
+    $('#pv-choix').textContent = choix === 'autre'
+      ? 'Proposé par la présidente' + NB + ': «' + NB + alt + NB + '».'
+      : 'Validé par la présidente' + NB + ': ' + prop(choix).pv + '.';
+    $('#pv-meteo').textContent = clauseMeteo();
+    signe = false;
+    $('#b-sceau').classList.remove('signed');
+    $('#b-sceau').classList.add('pulse');
+    $('#ps').hidden = true;
+    $('#fin').hidden = true;
+    await go('s-pv');
+  });
+
+  /* ---------- 5. procès-verbal ---------- */
+  let signe = false;
+  $('#b-sceau').addEventListener('click', async () => {
+    if (signe) return;
+    signe = true;
+    const s = $('#b-sceau');
+    s.classList.remove('pulse');
+    s.classList.add('signed');
+    buzz([20, 50, 30]);
+    await wait(900);
+    appear($('#ps'));
+    await wait(900);
+    const fin = appear($('#fin'));
+    $('#b-copier').textContent = 'Copier ma réponse';
+    $('#copy-txt').hidden = true;
+    fin.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  function reponse() {
+    if (choix === 'autre') return 'PV signé 🍋 Mercredi, la présidente propose' + NB + ': ' + alt + '.';
+    return 'PV signé 🍋 Mercredi' + NB + ': ' + prop(choix).pv + '. La présidente a tranché.';
+  }
+  $('#b-copier').addEventListener('click', async () => {
+    const t = reponse();
+    const b = $('#b-copier');
+    try {
+      await navigator.clipboard.writeText(t);
+      b.textContent = 'Copié ✓';
+      buzz(15);
+    } catch (e) {
+      const f = $('#copy-txt');
+      f.value = t;
+      f.hidden = false;
+      f.focus();
+      f.select();
+      b.textContent = 'Sélectionné, copie-le';
+    }
+  });
+  $('#b-changer').addEventListener('click', () => go('s-mercredi'));
+  $('#b-rejouer').addEventListener('click', () => location.reload());
+
+  /* ---------- départ ---------- */
+  onMeteo();
+  (async () => {
+    try {
+      if (hash === '#sansmeteo') throw new Error('test');
+      const ctrl = window.AbortController ? new AbortController() : null;
+      const minuteur = setTimeout(() => { if (ctrl) ctrl.abort(); }, 7000);
+      const r = await fetch(METEO, ctrl ? { signal: ctrl.signal } : undefined);
+      clearTimeout(minuteur);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+      const h = d.hourly;
+      const ix = [];
+      h.time.forEach((s, i) => { const hr = +s.slice(11, 13); if (hr >= 14 && hr <= 18) ix.push(i); });
+      const val = (k) => ix.map((i) => h[k][i]).filter((v) => typeof v === 'number');
+      const temps = val('temperature_2m');
+      if (!temps.length) throw new Error('vide');
+      const moy = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+      const ress = val('apparent_temperature');
+      const codes = val('weather_code');
+      const probas = val('precipitation_probability');
+      const pluie = val('precipitation').reduce((x, y) => x + y, 0);
+      const pmax = probas.length ? Math.max.apply(null, probas) : 0;
+      const codeMouille = codes.some((c) => (c >= 51 && c <= 67) || (c >= 71 && c <= 86) || c >= 95);
+      meteo = {
+        t: Math.round(moy(temps)),
+        ressenti: Math.round(moy(ress.length ? ress : temps)),
+        code: codes.length ? codes[Math.floor(codes.length / 2)] : -1,
+        mouille: pmax >= 50 || pluie >= 0.5 || codeMouille,
+      };
+      if (hash === '#pluie') { meteo.mouille = true; meteo.code = 61; }
+    } catch (e) {
+      meteo = null;
+    }
+    onMeteo();
+  })();
+})();
+</script>
+</body>
+</html>
