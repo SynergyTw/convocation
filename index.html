@@ -183,7 +183,10 @@ h2{font-size:34px}
 @keyframes vexe{30%{transform:translateY(-12px) rotate(-6deg)}}
 .k-msg{margin:-8px 0 0;min-height:46px;text-align:center;font:italic 500 18px/1.25 var(--f-title)}
 .k-score{margin:0;text-align:center;font:800 30px/1.1 var(--f-title)}
-.k-verdict{margin:6px 0 0;text-align:center;color:var(--ink-2)}
+.k-record{display:table;margin:10px auto 0;padding:5px 12px 4px;border-radius:999px;background:var(--lemon);font:700 12px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.k-verdict{margin:8px 0 0;text-align:center;color:var(--ink-2)}
+.bureau.secousse{animation:secousse .3s linear}
+@keyframes secousse{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 
 /* ---------- égalité ---------- */
 .overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:24px;
@@ -537,8 +540,8 @@ h2{font-size:34px}
 <section class="scene" id="s-kiki" hidden>
   <p class="kicker">Suspension de séance</p>
   <h2 class="big">Kiki est monté sur la table.</h2>
-  <p class="intro">Il va tout faire tomber. Touche chaque objet qu’il pousse pour le sauver.</p>
-  <p class="k-hud" id="k-hud" aria-live="polite">Sauvetages 0 · Dégâts 0</p>
+  <p class="intro">Il va tout faire tomber, de plus en plus vite. Touche chaque objet qu’il pousse pour le sauver. Trois objets cassés, et c’est fini.</p>
+  <p class="k-hud" id="k-hud" aria-live="polite">Niveau 1 · 0&nbsp;objet sauvé · ♥♥♥</p>
   <div class="bureau" id="bureau">
     <div class="plateau"></div>
     <div class="chant"></div>
@@ -590,6 +593,7 @@ h2{font-size:34px}
   <button class="btn" id="b-kiki" type="button">Sauver le bureau</button>
   <div id="k-bilan" hidden>
     <p class="k-score" id="k-score"></p>
+    <p class="k-record" id="k-record"></p>
     <p class="k-verdict" id="k-verdict"></p>
   </div>
   <button class="btn" id="b-reprendre" type="button" hidden>Reprendre la séance</button>
@@ -861,8 +865,13 @@ h2{font-size:34px}
   });
   $('#b-suivant2').addEventListener('click', () => go('s-kiki'));
 
-  /* ---------- 4 bis. incident : Kiki fait tout tomber (le petit jeu) ---------- */
-  const DUREES = [1800, 1650, 1500, 1400, 1300, 1200, 1100, 1000]; // temps pour sauver l'objet, de plus en plus court
+  /* ---------- 4 bis. incident : Kiki fait tout tomber (le petit jeu, en mode arcade) ---------- */
+  // Sans fin et de plus en plus dur : trois objets cassés, et c'est fini. Le record reste dans le téléphone.
+  const VIES = 3;
+  const delai = (n) => Math.max(420, Math.round(1800 * Math.pow(0.93, n)));  // temps pour sauver l'objet
+  const trajet = (n) => Math.max(200, Math.round(520 * Math.pow(0.95, n))); // Kiki passe d'un objet à l'autre
+  const souffle = (n) => Math.max(140, Math.round(480 * Math.pow(0.93, n))); // pause entre deux attaques
+  const CLE_RECORD = 'convocation-kiki-record';
   const OBJETS = {
     tampon: 'Le tampon officiel. Gérard le cherchera trois semaines.',
     rose: 'Le verre de rosé. Liberté, égalité… flaque.',
@@ -877,17 +886,21 @@ h2{font-size:34px}
   const SAUVE = ['Sauvé.', 'Non, Kiki.', 'Bien tenté, Kiki.', 'Kiki fait comme si de rien n’était.', 'Réflexes de présidente.', 'Kiki te fixe. Il prépare sa vengeance.'];
   const kiki = $('#kiki');
   const bureau = $('#bureau');
-  const k = { sauves: 0, degats: 0, tour: 0, cible: null, timer: 0, fin: null, enJeu: false, joue: false };
+  const k = { sauves: 0, vies: VIES, tour: 0, cible: null, timer: 0, fin: null, enJeu: false, record: 0 };
+  try { k.record = Math.max(0, parseInt(localStorage.getItem(CLE_RECORD), 10) || 0); } catch (e) {}
   const restants = () => [...bureau.querySelectorAll('.objet')].filter((o) => !o.classList.contains('tombe'));
-  function kHud() { $('#k-hud').textContent = 'Sauvetages ' + k.sauves + ' · Dégâts ' + k.degats; }
+  const niveau = () => 1 + Math.floor(k.sauves / 5);
+  const sauves = (n) => n + ' objet' + (n > 1 ? 's' : '') + ' sauvé' + (n > 1 ? 's' : '');
+  function kHud() {
+    $('#k-hud').textContent = 'Niveau ' + niveau() + ' · ' + sauves(k.sauves) + ' · ' + '♥'.repeat(k.vies) + '♡'.repeat(VIES - k.vies);
+  }
   function kMsg(t) { const m = $('#k-msg'); m.textContent = t; appear(m); }
-  function kVerdict() {
-    if (k.sauves === k.tour) return 'Tout est sauvé. Kiki est vexé.';
-    if (k.sauves >= k.tour - 2) return 'Quelques dégâts. Kiki ne regrette rien.';
-    if (k.sauves * 2 >= k.tour) return 'Match nul. Kiki réclame une revanche.';
+  function kVerdict(n) {
+    if (n >= 20) return 'Kiki envisage de démissionner.';
+    if (n >= 12) return 'Réflexes de présidente. Kiki est vexé.';
+    if (n >= 5) return 'Pas mal. Kiki ne regrette rien.';
     return 'Kiki a gagné. Il est très fier de lui.';
   }
-  const kScore = () => k.sauves + ' sur ' + k.tour;
   function kRegler(o) { // l'objet est sauvé ou tombé : on passe à la suite
     clearTimeout(k.timer);
     o.classList.remove('menace');
@@ -903,7 +916,7 @@ h2{font-size:34px}
     o.classList.remove('ouf'); void o.offsetWidth; o.classList.add('ouf');
     k.sauves++;
     kHud();
-    kMsg(SAUVE[(k.sauves - 1) % SAUVE.length]);
+    kMsg(k.sauves % 5 ? SAUVE[(k.sauves - 1) % SAUVE.length] : 'Niveau ' + niveau() + '. Kiki accélère.');
     buzz(15);
     kiki.classList.remove('vexe'); void kiki.getBoundingClientRect(); kiki.classList.add('vexe');
     kRegler(o);
@@ -911,10 +924,11 @@ h2{font-size:34px}
   function kTomber(o) {
     o.classList.add('tombe');
     o.disabled = true;
-    k.degats++;
+    k.vies--;
     kHud();
     kMsg(OBJETS[o.dataset.o]);
     buzz([40, 40, 80]);
+    bureau.classList.remove('secousse'); void bureau.offsetWidth; bureau.classList.add('secousse');
     kRegler(o);
   }
   function kAttaque() {
@@ -924,14 +938,17 @@ h2{font-size:34px}
       if (!choix.length) choix = dispo;
       const o = choix[Math.floor(Math.random() * choix.length)];
       k.derniere = o;
+      const n = k.tour++;
+      const t = trajet(n);
+      kiki.style.transitionDuration = t + 'ms';
       kiki.classList.add('marche');
       kiki.style.left = (o.offsetLeft + o.offsetWidth / 2 - kiki.clientWidth / 2) + 'px';
-      await wait(520);
+      await wait(t + 20);
       kiki.classList.remove('marche');
       kiki.classList.add('pousse');
-      kMsg(VISE[o.dataset.o]);
-      await wait(200);
-      const d = DUREES[k.tour++];
+      if (n < 3) kMsg(VISE[o.dataset.o]); // ensuite, ça va trop vite pour lire
+      await wait(n < 6 ? 200 : 120);
+      const d = delai(n);
       const r = (Math.random() < 0.5 ? -9 : 9) + 'deg';
       o.style.setProperty('--r', r);
       o.style.transition = 'transform ' + d + 'ms cubic-bezier(.5,0,.85,.55)';
@@ -950,15 +967,17 @@ h2{font-size:34px}
   bureau.addEventListener(window.PointerEvent ? 'pointerdown' : 'touchstart', kTouche, { passive: false });
   function kPreparer() {
     clearTimeout(k.timer);
-    Object.assign(k, { sauves: 0, degats: 0, tour: 0, cible: null, fin: null, derniere: null });
+    Object.assign(k, { sauves: 0, vies: VIES, tour: 0, cible: null, fin: null, derniere: null });
     bureau.querySelectorAll('.objet').forEach((o) => {
       o.classList.remove('menace', 'tombe', 'ouf');
       o.disabled = false;
       o.style.transition = 'none';
       o.style.transform = '';
     });
+    kiki.style.transitionDuration = '';
     kiki.style.left = '';
     kiki.classList.remove('pousse', 'marche', 'vexe');
+    bureau.classList.remove('secousse');
     kHud();
     $('#k-msg').textContent = '';
     $('#k-bilan').hidden = true;
@@ -972,20 +991,27 @@ h2{font-size:34px}
     $('#b-kiki').style.visibility = 'hidden'; // il garde sa place : la table ne bouge pas pendant la partie
     kMsg('Kiki s’étire…');
     await wait(700);
-    while (k.tour < DUREES.length && restants().length) {
+    while (k.vies > 0 && restants().length) {
       await kAttaque();
-      await wait(480);
+      if (k.vies > 0) await wait(souffle(k.tour));
     }
     k.enJeu = false;
-    k.joue = true;
+    const nouveau = k.sauves > k.record;
+    if (nouveau) {
+      k.record = k.sauves;
+      try { localStorage.setItem(CLE_RECORD, String(k.record)); } catch (e) {}
+    }
+    await wait(500);
+    kiki.style.transitionDuration = '';
     kiki.classList.add('marche');
     kiki.style.left = (bureau.clientWidth + 20) + 'px';
-    kMsg('Kiki descend de la table, l’air satisfait.');
-    await wait(900);
+    kMsg('Game over. Kiki descend de la table, l’air satisfait.');
+    await wait(1100);
     $('#b-kiki').hidden = true;
     $('#b-kiki').style.visibility = '';
-    $('#k-score').textContent = 'Sauvetages' + NB + ': ' + kScore();
-    $('#k-verdict').textContent = kVerdict();
+    $('#k-score').textContent = sauves(k.sauves);
+    $('#k-record').textContent = nouveau ? 'Nouveau record' + NB + '!' : 'Record' + NB + ': ' + k.record;
+    $('#k-verdict').textContent = kVerdict(k.sauves);
     appear($('#k-bilan'));
     await wait(500);
     appear($('#b-reprendre'));
@@ -1074,7 +1100,7 @@ h2{font-size:34px}
       ? 'Imposée par la présidente' + NB + ': «' + NB + alt + NB + '».'
       : 'Validée par la présidente' + NB + ': ' + prop(choix).pv + '.';
     $('#pv-meteo').textContent = clauseMeteo();
-    $('#pv-kiki').textContent = 'Kiki est monté sur la table. Sauvetages' + NB + ': ' + kScore() + '. ' + kVerdict();
+    $('#pv-kiki').textContent = 'Kiki est monté sur la table. Record de la présidente' + NB + ': ' + sauves(k.record) + '. ' + kVerdict(k.record);
     $('#pv-site').textContent = 'Le site n°3 aura pour vedette ' + vedette() + '.';
     affiche();
     $('#ps').hidden = true;
@@ -1172,7 +1198,7 @@ h2{font-size:34px}
     fin.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   });
   function reponse() {
-    return 'PV signé 🍋 La présidente a tranché' + NB + ': ' + vedette() + ' sera la vedette du site n°3. Score contre Kiki' + NB + ': ' + kScore() + '.';
+    return 'PV signé 🍋 La présidente a tranché' + NB + ': ' + vedette() + ' sera la vedette du site n°3. Record contre Kiki' + NB + ': ' + sauves(k.record) + '.';
   }
   // Copie à l'ancienne, pour les navigateurs intégrés (Instagram sur iPhone) qui refusent le presse-papiers moderne
   function copieAncienne(t) {
