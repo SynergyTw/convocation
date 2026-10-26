@@ -156,6 +156,35 @@ h2{font-size:34px}
 .autre input{width:100%;min-height:52px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:500 17px var(--f-body)}
 .autre input:focus{outline:none;border-color:var(--ink)}
 
+/* ---------- incident : Kiki sur la table ---------- */
+.k-hud{margin:0;font:700 13px/1.2 var(--f-mono);letter-spacing:.06em;text-align:center;color:var(--ink-2)}
+.bureau{position:relative;height:300px;margin:-6px -6px 0;overflow:hidden;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.plateau{position:absolute;left:0;right:0;top:60px;height:172px;clip-path:polygon(4% 0,96% 0,100% 100%,0 100%);
+  background:repeating-linear-gradient(90deg,rgba(120,80,40,.07) 0 2px,transparent 2px 23px),linear-gradient(#dcb784,#c99b62)}
+.chant{position:absolute;left:0;right:0;top:232px;height:16px;border-radius:0 0 6px 6px;background:#a87b48;box-shadow:0 12px 18px -12px rgba(30,41,68,.55)}
+.objet{position:absolute;top:84px;left:calc(var(--x) - 28px);z-index:2;width:56px;height:56px;padding:0;border:0;background:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.objet svg{display:block;width:56px;height:56px;overflow:visible}
+.objet.menace svg{animation:tremble .18s linear infinite;filter:drop-shadow(0 0 6px rgba(195,58,47,.8))}
+.objet.ouf svg{animation:ouf .4s ease}
+.objet.tombe{animation:chute .55s ease-in forwards;pointer-events:none}
+@keyframes tremble{25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@keyframes ouf{40%{transform:scale(1.2)}}
+@keyframes chute{from{transform:translateY(118px) rotate(var(--r,0deg))}to{transform:translateY(250px) rotate(75deg);opacity:0}}
+.kiki{position:absolute;top:16px;left:calc(50% - 35px);z-index:1;width:70px;height:80px;overflow:visible;transition:left .5s ease-in-out}
+.kiki .k-queue{transform-origin:47px 68px;animation:queue 2.4s ease-in-out infinite}
+.kiki .k-patte{transform-box:fill-box;transform-origin:center;transition:transform .15s ease}
+.kiki.pousse .k-patte{animation:tape .28s ease-in-out infinite}
+.kiki.marche{animation:trot .25s ease-in-out 2}
+.kiki.vexe{animation:vexe .5s ease}
+@keyframes queue{50%{transform:rotate(-14deg)}}
+@keyframes tape{0%,100%{transform:translateY(-16px)}50%{transform:translateY(-7px)}}
+@keyframes trot{50%{transform:translateY(-6px)}}
+@keyframes vexe{30%{transform:translateY(-12px) rotate(-6deg)}}
+.k-msg{margin:-8px 0 0;min-height:46px;text-align:center;font:italic 500 18px/1.25 var(--f-title)}
+.k-score{margin:0;text-align:center;font:800 30px/1.1 var(--f-title)}
+.k-verdict{margin:6px 0 0;text-align:center;color:var(--ink-2)}
+
 /* ---------- égalité ---------- */
 .overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:24px;
   background:rgba(246,241,229,.95);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
@@ -174,7 +203,7 @@ h2{font-size:34px}
 .articles{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
 .articles li{padding:9px 0;border-bottom:1px solid var(--line-2);font-size:15.5px;line-height:1.35}
 .articles b{display:block;margin-bottom:2px;font:700 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
-.sigs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 6px}
+.sigs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 6px}
 .sigs figure{margin:0;text-align:center}
 .sigs svg{display:block;width:100%;height:34px;color:var(--ink)}
 .sigs figcaption{padding-top:4px;border-top:1px solid var(--ink-2);font:400 12px/1.25 var(--f-mono);color:var(--ink-2)}
@@ -199,9 +228,25 @@ h2{font-size:34px}
 .ps{margin:14px 0 0;text-align:center;font:600 26px/1.2 "Caveat","Segoe Print","Bradley Hand",cursive;color:var(--ink);transform:rotate(-2deg)}
 .fin{display:flex;flex-direction:column;gap:12px}
 .levee{margin:4px 0 2px;text-align:center;font:800 30px/1.1 var(--f-title)}
-.prochain{margin:-6px 0 6px;text-align:center;font:400 14px/1.4 var(--f-mono);color:var(--ink-2)}
-.prochain small{display:block;font:italic 500 17px/1.3 var(--f-title);color:var(--ink)}
 .fin .hint{margin-top:-2px}
+
+/* ---------- l'affiche du site n°3 ---------- */
+.affiche{position:relative;overflow:hidden;margin:0 0 6px;padding:18px 18px 14px;border-radius:10px;background:var(--ink);color:#fffdf8;text-align:center;
+  box-shadow:0 18px 36px -18px rgba(30,41,68,.6)}
+.affiche::before{content:"";position:absolute;left:50%;top:-60px;width:360px;height:360px;margin-left:-180px;pointer-events:none;
+  background:radial-gradient(circle,rgba(242,207,59,.2) 0%,rgba(242,207,59,0) 62%)}
+.affiche>*{position:relative}
+.aff-k{margin:0;font:700 11px/1.2 var(--f-mono);letter-spacing:.3em;text-transform:uppercase;color:var(--lemon)}
+.aff-t{margin:5px 0 14px;font:700 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#c9cfdc}
+.aff-star{display:block;width:156px;height:156px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 50% 42%,#fdf3c4 0%,#f2cf3b 72%)}
+.aff-star.citron{background:radial-gradient(circle at 50% 42%,#fffdf8 0%,#efe8d9 75%)}
+.fin:not([hidden]) .aff-star{animation:vedette .7s .3s cubic-bezier(.2,.9,.25,1.25) both}
+@keyframes vedette{from{opacity:0;transform:scale(.4) rotate(-8deg)}to{opacity:1;transform:none}}
+.aff-role{margin:14px 0 2px;font:italic 500 15px/1.3 var(--f-title);color:#c9cfdc}
+.aff-nom{margin:0;font:800 29px/1.08 var(--f-title);overflow-wrap:anywhere}
+.aff-nom.long{font-size:22px}
+.aff-tag{margin:6px 0 0;font:italic 500 16px/1.3 var(--f-title);color:var(--lemon)}
+.aff-pied{margin:12px 0 0;padding-top:10px;border-top:1px solid rgba(255,253,248,.18);font:400 12px/1.45 var(--f-mono);color:#c9cfdc}
 .fin textarea{width:100%;min-height:76px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:15px/1.4 var(--f-body);color:var(--ink);background:#fff}
 .row{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px}
 
@@ -210,8 +255,9 @@ h2{font-size:34px}
   .meta{font-size:13px} .meta dt{width:114px} .doc{padding:20px 16px}
 }
 @media (prefers-reduced-motion:reduce){
-  .scene,.say,.members li,.prop .voix{transition-duration:.01s}
-  .appear,.stamp.hit,.pad.signed .seal,.say.boude .av{animation-duration:.01s}
+  .scene,.say,.members li,.prop .voix,.kiki{transition-duration:.01s}
+  .kiki .k-queue,.kiki.marche,.kiki.vexe,.objet.ouf svg{animation:none}
+  .appear,.stamp.hit,.pad.signed .seal,.say.boude .av,.fin:not([hidden]) .aff-star{animation-duration:.01s;animation-delay:0s}
 }
 </style>
 </head>
@@ -236,6 +282,91 @@ h2{font-size:34px}
       <circle cx="72" cy="72" r="41" fill="none" stroke="currentColor" stroke-width="1.6"/>
       <text fill="currentColor" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="12.5" letter-spacing="3.6"><textPath href="#arc" xlink:href="#arc">LA PRÉSIDENTE · A TRANCHÉ · </textPath></text>
       <use href="#citron" xlink:href="#citron" x="36" y="36" width="72" height="72"/>
+    </symbol>
+
+    <!-- les trois mascottes possibles : la vedette du site n°3 -->
+    <symbol id="ch-enzo" viewBox="0 0 100 100"><!-- bouvier bernois -->
+      <path d="M18 76Q50 70 82 76L90 100H10Z" fill="#1f1c22"/>
+      <path d="M32 76Q50 96 68 76L72 100H28Z" fill="#f7f3ea"/>
+      <path d="M28 29C17 30 10 43 12 57C13 64 20 67 25 61C29 55 31 44 34 35Z" fill="#1f1c22"/>
+      <path d="M72 29C83 30 90 43 88 57C87 64 80 67 75 61C71 55 69 44 66 35Z" fill="#1f1c22"/>
+      <path d="M50 17C68 17 77 29 77 45C77 62 70 74 50 78C30 74 23 62 23 45C23 29 32 17 50 17Z" fill="#1f1c22"/>
+      <ellipse cx="34.5" cy="62" rx="9" ry="7.5" fill="#b35a26"/>
+      <ellipse cx="65.5" cy="62" rx="9" ry="7.5" fill="#b35a26"/>
+      <path d="M47.5 21Q50 18.5 52.5 21L55 46Q63.5 50 64.5 61Q64.5 74.5 50 76.5Q35.5 74.5 35.5 61Q36.5 50 45 46Z" fill="#f7f3ea"/>
+      <ellipse cx="38" cy="36.5" rx="4.2" ry="2.8" fill="#b35a26"/>
+      <ellipse cx="62" cy="36.5" rx="4.2" ry="2.8" fill="#b35a26"/>
+      <circle cx="39" cy="44" r="3.7" fill="#6e3f1d"/><circle cx="39" cy="44" r="2" fill="#1a0f08"/><circle cx="40.3" cy="42.7" r="1.2" fill="#fff"/>
+      <circle cx="61" cy="44" r="3.7" fill="#6e3f1d"/><circle cx="61" cy="44" r="2" fill="#1a0f08"/><circle cx="62.3" cy="42.7" r="1.2" fill="#fff"/>
+      <path d="M46 67.5Q46 76 50 76Q54 76 54 67.5Z" fill="#e98a94"/>
+      <path d="M50 70V74" stroke="#c9677a" stroke-width="1" stroke-linecap="round"/>
+      <path d="M43.5 55.5Q50 52.5 56.5 55.5Q56.5 61 50 62.5Q43.5 61 43.5 55.5Z" fill="#141216"/>
+      <path d="M46.5 55.6Q48.5 54.6 50.5 55" stroke="#fff" stroke-opacity=".45" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <path d="M50 62.5V66M50 66Q46 70 41.5 67M50 66Q54 70 58.5 67" stroke="#141216" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ch-gerard" viewBox="0 0 100 100"><!-- teckel poil long : le corps, très long, part derrière la tête -->
+      <path d="M85 68Q95 66 96 52Q99 58 97 63Q100 61 99.5 55Q102 66 90 73Z" fill="#8a3f1e"/>
+      <path d="M48 84L50 94Q53 96 56 94L56 84ZM58 84L59 94Q62 96 65 94L64 84ZM78 84L78 94Q81 96 84 94L85 84ZM86 82L87 93Q90 95 93 93L91 80Z" fill="#94461f"/>
+      <path d="M36 66C40 62 60 63 76 63C86 63 93 66 93 74C93 82 87 86 76 86H46C40 86 34 78 36 66Z" fill="#a9532a"/>
+      <path d="M46 85Q49 90 52 86Q55 91 58 86Q61 91 64 86Q67 91 70 86Q73 91 76 86Q79 91 82 86Q85 90 88 84" fill="#a9532a" stroke="#8a3f1e" stroke-width="1.2" stroke-linejoin="round"/>
+      <path d="M30 26C21 27 15 36 16 48C16 56 14 63 17 69C19 72 22 69 24 72C26 75 29 71 31 73C34 68 33 61 34 54C35 44 37 33 30 26Z" fill="#8a3f1e"/>
+      <path d="M54 26C63 27 69 36 68 48C68 56 70 63 67 69C65 72 62 69 60 72C58 75 55 71 53 73C50 68 51 61 50 54C49 44 47 33 54 26Z" fill="#8a3f1e"/>
+      <path d="M21 42Q19 54 21 66M26 38Q24 52 26 70M63 42Q65 54 63 66M58 38Q60 52 58 70" stroke="#b5622f" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".75"/>
+      <path d="M42 19C54 19 59 28 58 39C57.5 47 54 52 51.5 57L50.5 67Q42 72.5 33.5 67L32.5 57C30 52 26.5 47 26 39C25 28 30 19 42 19Z" fill="#a9532a"/>
+      <path d="M36.5 48Q42 45.5 47.5 48L49.5 66Q42 71.5 34.5 66Z" fill="#c4743f"/>
+      <path d="M37 21Q42 15 47 21Q42 19 37 21Z" fill="#8a3f1e"/>
+      <path d="M31 33.5Q34.5 31.2 38.2 33.2M45.8 33.2Q49.5 31.2 53 33.5" stroke="#6e3115" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+      <ellipse cx="35" cy="38.5" rx="3.1" ry="3.4" fill="#2a1810"/><circle cx="36.1" cy="37.4" r="1.1" fill="#fff"/>
+      <ellipse cx="49" cy="38.5" rx="3.1" ry="3.4" fill="#2a1810"/><circle cx="50.1" cy="37.4" r="1.1" fill="#fff"/>
+      <path d="M37.5 61.5Q42 59 46.5 61.5Q46 66 42 67Q38 66 37.5 61.5Z" fill="#1a1210"/>
+      <path d="M39.6 61.4Q41 60.6 42.6 60.9" stroke="#fff" stroke-opacity=".4" stroke-width="1" stroke-linecap="round" fill="none"/>
+      <path d="M42 67V69.3M42 69.3Q39.6 71 37.6 69.7M42 69.3Q44.4 71 46.4 69.7" stroke="#1a1210" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <clipPath id="clipTeteBerger"><path d="M50 22C67 22 76 33 76 48C76 63 69 74 50 78C31 74 24 63 24 48C24 33 33 22 50 22Z"/></clipPath>
+    <symbol id="ch-jp" viewBox="0 0 100 100"><!-- berger américain miniature, bleu merle (un œil bleu, un œil marron) -->
+      <path d="M22 72Q50 100 78 72L86 100H14Z" fill="#f7f3ea"/>
+      <path d="M30 86Q33 91 36 87M64 87Q67 91 70 86" stroke="#ddd5c4" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+      <path d="M27 40L22 15Q22 10 27 12L45 27Z" fill="#9aa3b0"/>
+      <path d="M22 15Q22 10 27 12L33 17Q27 23 19 22Z" fill="#2b2f38"/>
+      <path d="M73 40L78 15Q78 10 73 12L55 27Z" fill="#2b2f38"/>
+      <path d="M78 15Q78 10 73 12L67 17Q73 23 81 22Z" fill="#5d6573"/>
+      <path d="M50 22C67 22 76 33 76 48C76 63 69 74 50 78C31 74 24 63 24 48C24 33 33 22 50 22Z" fill="#9aa3b0"/>
+      <g clip-path="url(#clipTeteBerger)">
+        <path d="M50 20C62 20 80 26 78 44C76 52 68 50 62 47C57 44 55 36 50 34Z" fill="#2b2f38"/>
+        <ellipse cx="33" cy="30" rx="6" ry="4" fill="#5d6573"/>
+        <ellipse cx="29" cy="52" rx="4" ry="5" fill="#2b2f38"/>
+        <ellipse cx="72" cy="58" rx="3" ry="4" fill="#5d6573"/>
+        <circle cx="40" cy="24" r="2.4" fill="#2b2f38"/>
+      </g>
+      <ellipse cx="35" cy="61" rx="8" ry="6.5" fill="#b86a35"/>
+      <ellipse cx="65" cy="61" rx="8" ry="6.5" fill="#b86a35"/>
+      <path d="M48 26Q50 24 52 26L54.5 46Q62.5 50 63.5 61Q63.5 74 50 76Q36.5 74 36.5 61Q37.5 50 45.5 46Z" fill="#f7f3ea"/>
+      <ellipse cx="38.5" cy="37.5" rx="3.6" ry="2.5" fill="#b86a35"/>
+      <ellipse cx="61.5" cy="37.5" rx="3.6" ry="2.5" fill="#b86a35"/>
+      <circle cx="39.5" cy="45" r="3.6" fill="#6fb3d9"/><circle cx="39.5" cy="45" r="1.7" fill="#1f2a36"/><circle cx="40.8" cy="43.8" r="1.1" fill="#fff"/>
+      <circle cx="60.5" cy="45" r="3.6" fill="#5a3418"/><circle cx="60.5" cy="45" r="1.7" fill="#21130a"/><circle cx="61.8" cy="43.8" r="1.1" fill="#fff"/>
+      <path d="M44 56Q50 53 56 56Q56 61 50 62.5Q44 61 44 56Z" fill="#1d1f25"/>
+      <path d="M46.8 56Q48.6 55 50.6 55.4" stroke="#fff" stroke-opacity=".45" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <path d="M50 62.5V66M50 66Q46.5 69.5 42.5 67M50 66Q53.5 69.5 57.5 67" stroke="#1d1f25" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Kiki : huissier de séance, tout noir -->
+    <symbol id="av-kiki" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#e8def3"/>
+      <g clip-path="url(#clipAv)">
+        <path d="M20 104Q22 76 50 72Q78 76 80 104Z" fill="#16151b"/>
+        <path d="M24 46L21 13L45 31Z" fill="#16151b"/>
+        <path d="M76 46L79 13L55 31Z" fill="#16151b"/>
+        <path d="M26.5 38L25 20L38.5 30.5Z" fill="#3b2e3c"/>
+        <path d="M73.5 38L75 20L61.5 30.5Z" fill="#3b2e3c"/>
+        <ellipse cx="50" cy="51" rx="27" ry="24" fill="#16151b"/>
+        <path d="M33 36Q41 30.5 52 30.5" stroke="#34323f" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="40" cy="49" rx="6" ry="6.6" fill="#d9e04f"/><ellipse cx="40" cy="49" rx="1.8" ry="5.4" fill="#0d0d10"/><circle cx="41.9" cy="46.3" r="1.4" fill="#fff"/>
+        <ellipse cx="60" cy="49" rx="6" ry="6.6" fill="#d9e04f"/><ellipse cx="60" cy="49" rx="1.8" ry="5.4" fill="#0d0d10"/><circle cx="61.9" cy="46.3" r="1.4" fill="#fff"/>
+        <path d="M47.5 58H52.5L50 61Z" fill="#e89aac"/>
+        <path d="M50 61Q48 64 45.5 63M50 61Q52 64 54.5 63" stroke="#55505e" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        <path d="M37 59L21 56M37 62.5L21 64M63 59L79 56M63 62.5L79 64" stroke="#8d8a99" stroke-width="1" stroke-linecap="round"/>
+      </g>
     </symbol>
 
     <!-- Enzo : secrétaire de séance -->
@@ -355,10 +486,11 @@ h2{font-size:34px}
     <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-jp" xlink:href="#av-jp"/></svg><div><b>Jean-Pierre, dit JP</b><span>Vice-président chargé du charme</span></div></li>
     <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-gerard" xlink:href="#av-gerard"/></svg><div><b>Gérard</b><span>Doyen. Rarement consulté.</span></div></li>
     <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-enzo" xlink:href="#av-enzo"/></svg><div><b>Enzo</b><span>Secrétaire de séance</span></div></li>
+    <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-kiki" xlink:href="#av-kiki"/></svg><div><b>Kiki</b><span>Huissier de séance. Tout noir, aucun remords.</span></div></li>
     <li class="excuse"><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#ece6d8"/><ellipse cx="55" cy="64" rx="26" ry="15" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M75 70Q86 66 81 55Q79 62 70 64" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M26 50L27 37L35 44Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M40 44L47 36L49 49Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><circle cx="37" cy="54" r="13" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M30 54q3 2.4 6 0M38.5 54q3 2.4 6 0" fill="none" stroke="#1e2944" stroke-width="1.8" stroke-linecap="round"/><path d="M35.5 58.6q1.6 1.3 3.2 0" fill="none" stroke="#1e2944" stroke-width="1.4" stroke-linecap="round"/><text x="62" y="37" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="15" fill="#5b6479">z</text><text x="72" y="27" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="11" fill="#5b6479">z</text></svg><div><b>Skouat et Lilou</b><span>Excusés (sieste)</span></div></li>
   </ul>
   <p class="quorum" id="quorum" hidden>Quorum atteint.</p>
-  <p class="aside" id="aside" hidden>(Les trois, c’est moi.)</p>
+  <p class="aside" id="aside" hidden>(Les trois humains, c’est moi.)</p>
   <button class="btn" id="b-ouvrir" type="button" hidden>Ouvrir la séance</button>
 </section>
 
@@ -401,11 +533,74 @@ h2{font-size:34px}
   <button class="btn" id="b-suivant2" type="button" hidden>Point suivant</button>
 </section>
 
+<!-- 4 bis. Incident de séance : Kiki sur la table (le petit jeu) -->
+<section class="scene" id="s-kiki" hidden>
+  <p class="kicker">Suspension de séance</p>
+  <h2 class="big">Kiki est monté sur la table.</h2>
+  <p class="intro">Il va tout faire tomber. Touche chaque objet qu’il pousse pour le sauver.</p>
+  <p class="k-hud" id="k-hud" aria-live="polite">Sauvetages 0 · Dégâts 0</p>
+  <div class="bureau" id="bureau">
+    <div class="plateau"></div>
+    <div class="chant"></div>
+    <svg class="kiki" id="kiki" viewBox="0 0 70 80" aria-label="Kiki, le chat tout noir">
+      <path class="k-queue" d="M46 70Q62 69 64 56Q66 44 58 40Q55 39 55.5 42Q61 47 59 56Q57 63 45 65Z" fill="#16151b"/>
+      <path d="M21 76Q17 52 27 41H43Q53 52 49 76Z" fill="#16151b"/>
+      <ellipse cx="29" cy="76" rx="5.5" ry="3.4" fill="#16151b"/>
+      <ellipse class="k-patte" cx="41" cy="76" rx="5.5" ry="3.4" fill="#16151b"/>
+      <path d="M21 25L19 6L33 16Z" fill="#16151b"/>
+      <path d="M49 25L51 6L37 16Z" fill="#16151b"/>
+      <path d="M22.4 20L21.5 10.5L29 16Z" fill="#3b2e3c"/>
+      <path d="M47.6 20L48.5 10.5L41 16Z" fill="#3b2e3c"/>
+      <ellipse cx="35" cy="28" rx="16.5" ry="14.5" fill="#16151b"/>
+      <path d="M25 19Q30 15.5 36 15.5" stroke="#34323f" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="29" cy="27" rx="3.7" ry="4.1" fill="#d9e04f"/><ellipse cx="29" cy="27" rx="1.1" ry="3.3" fill="#0d0d10"/><circle cx="30.2" cy="25.4" r=".9" fill="#fff"/>
+      <ellipse cx="41" cy="27" rx="3.7" ry="4.1" fill="#d9e04f"/><ellipse cx="41" cy="27" rx="1.1" ry="3.3" fill="#0d0d10"/><circle cx="42.2" cy="25.4" r=".9" fill="#fff"/>
+      <path d="M33.5 33H36.5L35 34.8Z" fill="#e89aac"/>
+      <path d="M26 34L16 32M26 36L16 37.5M44 34L54 32M44 36L54 37.5" stroke="#8d8a99" stroke-width=".8" stroke-linecap="round"/>
+    </svg>
+    <button class="objet" type="button" data-o="tampon" style="--x:12%" aria-label="Le tampon officiel"><svg viewBox="0 0 56 56" aria-hidden="true">
+      <ellipse cx="28" cy="50" rx="17" ry="3.5" fill="#1e2944" opacity=".18"/>
+      <ellipse cx="28" cy="9" rx="8.5" ry="6.5" fill="#8a5a32"/><rect x="24" y="12" width="8" height="19" rx="3" fill="#a06a3c"/>
+      <rect x="13" y="29" width="30" height="10" rx="3" fill="#c33a2f"/><rect x="11" y="37" width="34" height="9" rx="2" fill="#2a2a33"/>
+      <path d="M16 32H25" stroke="#fff" stroke-opacity=".45" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <button class="objet" type="button" data-o="rose" style="--x:31%" aria-label="Le verre de rosé"><svg viewBox="0 0 56 56" aria-hidden="true">
+      <ellipse cx="28" cy="50" rx="12" ry="3" fill="#1e2944" opacity=".18"/>
+      <path d="M16 5H40Q41 25 28 30.5Q15 25 16 5Z" fill="#fff" fill-opacity=".6" stroke="#9aa6bd" stroke-width="1.6"/>
+      <path d="M17.5 13H38.5Q38 25 28 28.6Q18 25 17.5 13Z" fill="#f4a3a8"/>
+      <path d="M28 30.5V46" stroke="#9aa6bd" stroke-width="2.2"/><ellipse cx="28" cy="47" rx="9" ry="2.6" fill="#fff" stroke="#9aa6bd" stroke-width="1.6"/>
+      <path d="M20.5 8Q20.5 15 22.5 19" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></button>
+    <button class="objet" type="button" data-o="pv" style="--x:50%" aria-label="Le procès-verbal"><svg viewBox="0 0 56 56" aria-hidden="true">
+      <ellipse cx="28" cy="50" rx="18" ry="3.5" fill="#1e2944" opacity=".18"/>
+      <rect x="11" y="9" width="33" height="39" rx="2" fill="#efe8d9" stroke="#d8cdb6" transform="rotate(-7 28 29)"/>
+      <rect x="12" y="7" width="33" height="39" rx="2" fill="#fffdf8" stroke="#d8cdb6"/>
+      <path d="M17 15H40M17 20H40M17 25H36M17 30H40M17 35H29" stroke="#b9bfcc" stroke-width="1.5"/>
+      <circle cx="38" cy="40" r="4.2" fill="#f2cf3b" stroke="#c9a51e"/></svg></button>
+    <button class="objet" type="button" data-o="citron" style="--x:69%" aria-label="Le citron présidentiel"><svg viewBox="0 0 56 56" aria-hidden="true">
+      <ellipse cx="28" cy="50" rx="17" ry="3.5" fill="#1e2944" opacity=".18"/>
+      <use href="#citron" xlink:href="#citron" x="-4" y="-2" width="64" height="64"/></svg></button>
+    <button class="objet" type="button" data-o="lunettes" style="--x:88%" aria-label="Les lunettes de Gérard"><svg viewBox="0 0 56 56" aria-hidden="true">
+      <ellipse cx="28" cy="50" rx="19" ry="3" fill="#1e2944" opacity=".18"/>
+      <path d="M10 33L5 26M46 33L51 26" stroke="#4a4038" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="18" cy="36" r="9.5" fill="#e9f2f6" fill-opacity=".7" stroke="#4a4038" stroke-width="2.8"/>
+      <circle cx="38" cy="36" r="9.5" fill="#e9f2f6" fill-opacity=".7" stroke="#4a4038" stroke-width="2.8"/>
+      <path d="M27 35Q28 32 29 35" stroke="#4a4038" stroke-width="2.4" fill="none"/>
+      <path d="M13 32Q15 29.5 18 29.5M33 32Q35 29.5 38 29.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></button>
+  </div>
+  <p class="k-msg" id="k-msg" aria-live="polite"></p>
+  <button class="btn" id="b-kiki" type="button">Sauver le bureau</button>
+  <div id="k-bilan" hidden>
+    <p class="k-score" id="k-score"></p>
+    <p class="k-verdict" id="k-verdict"></p>
+  </div>
+  <button class="btn" id="b-reprendre" type="button" hidden>Reprendre la séance</button>
+  <button class="link" id="b-rejouer-kiki" type="button" hidden>Rejouer</button>
+</section>
+
 <!-- 5. Point n°3 : la mascotte du comité -->
 <section class="scene" id="s-mascotte" hidden>
   <p class="kicker">Ordre du jour · point n°3</p>
   <h2 class="big">La mascotte du comité</h2>
-  <p class="intro">Le comité veut une mascotte. Les avis divergent.</p>
+  <p class="intro">Le comité veut une mascotte. Elle tiendra <b>le premier rôle du site n°3</b>. Les avis divergent.</p>
   <p class="hint" id="hint" hidden>Touche ta proposition préférée.</p>
   <div class="props" id="props"></div>
   <button class="link" id="b-autre" type="button" hidden>Aucune ne me va</button>
@@ -426,16 +621,18 @@ h2{font-size:34px}
     <ol class="articles">
       <li><b>Point n°1 · La nouvelle coupe</b>Adoptée (2&nbsp;voix pour, 1&nbsp;bouderie). Ce n’est pas un carré.</li>
       <li><b>Point n°2 · Mercredi 28&nbsp;octobre</b>Adopté à l’unanimité&nbsp;: un verre en ville, une balade, les boutiques.</li>
+      <li><b>Incident de séance</b><span id="pv-kiki"></span></li>
       <li><b>Point n°3 · La mascotte</b><span id="pv-choix"></span></li>
       <li><b>Clause météo</b><span id="pv-meteo"></span></li>
       <li><b>Clause alimentaire</b>Sans gluten pour la présidente, sans lactose pour le secrétaire.</li>
       <li><b>Article&nbsp;4</b>Les blagues caca restent autorisées (cf.&nbsp;23h17).</li>
-      <li><b>Article&nbsp;5 · Un site par semaine</b>Engagement maintenu. Gérard demande des congés payés.</li>
+      <li><b>Article&nbsp;5 · Un site par semaine</b>Engagement maintenu. <span id="pv-site"></span> Gérard demande des congés payés.</li>
     </ol>
     <div class="sigs">
       <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M4 26C10 8 18 4 20 16C22 28 26 30 32 18C36 10 40 8 41 18C42 26 48 26 54 16C60 6 70 4 76 14C82 24 92 22 116 8M30 32C50 28 80 30 104 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>JP</figcaption></figure>
       <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M34 22C38 16 41 26 45 20C48 16 51 25 55 20C58 17 61 24 66 21L70 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 29H74" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><figcaption>Gérard<small>(contraint et forcé)</small></figcaption></figure>
       <figure><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M10 24C12 10 22 8 22 18C22 28 12 28 15 20C18 13 28 15 32 22C36 29 42 26 46 18C49 12 56 13 58 20C60 27 68 26 76 18L110 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>Enzo<small>secrétaire</small></figcaption></figure>
+      <figure><svg viewBox="0 0 120 36" aria-hidden="true"><g fill="currentColor" transform="translate(60 19.5) rotate(12) scale(1.35)"><ellipse cy="5" rx="7.5" ry="6"/><ellipse cx="-9" cy="-5" rx="3" ry="3.8"/><ellipse cx="-3.2" cy="-10.5" rx="3" ry="3.8"/><ellipse cx="3.2" cy="-10.5" rx="3" ry="3.8"/><ellipse cx="9" cy="-5" rx="3" ry="3.8"/></g></svg><figcaption>Kiki<small>(patte)</small></figcaption></figure>
     </div>
     <div class="pres">
       <div class="pad" id="pad-zone">
@@ -451,7 +648,15 @@ h2{font-size:34px}
   <button class="btn" id="b-signature" type="button" disabled>Signer le procès-verbal</button>
   <div class="fin" id="fin" hidden>
     <p class="levee">Séance levée.</p>
-    <p class="prochain">Prochain site&nbsp;: la semaine prochaine.<small>(Si t’es gentille.)</small></p>
+    <div class="affiche" id="affiche">
+      <p class="aff-k">Prochainement</p>
+      <p class="aff-t">Le site de la semaine · n°3</p>
+      <svg class="aff-star" id="aff-star" viewBox="0 0 100 100" aria-hidden="true"><use id="aff-use" href="#ch-gerard" xlink:href="#ch-gerard" width="100" height="100"/></svg>
+      <p class="aff-role">Dans le rôle principal</p>
+      <p class="aff-nom" id="aff-nom"></p>
+      <p class="aff-tag" id="aff-tag"></p>
+      <p class="aff-pied">Sortie la semaine prochaine.<br>(Si t’es gentille.)</p>
+    </div>
     <button class="btn" id="b-copier" type="button">Copier ma réponse</button>
     <textarea id="copy-txt" readonly hidden aria-label="Ta réponse"></textarea>
     <p class="hint">Colle-la-moi en DM. Le comité attend.</p>
@@ -560,10 +765,24 @@ h2{font-size:34px}
 
   /* ---------- point n°3 : les mascottes proposées ---------- */
   const PROPS = {
-    jp: { qui: 'JP propose', quoi: 'Le berger américain', pourquoi: 'JP a fait ses recherches. Il sait ce qu’il fait.', pv: 'le berger américain', dit: 'Celui-là. Pour des raisons.' },
-    gerard: { qui: 'Gérard propose', quoi: 'Le teckel poil long', pourquoi: 'Petit, poilu, un peu ronchon. Gérard s’y reconnaît.', pv: 'le teckel poil long', dit: 'Le teckel. Évidemment.' },
-    enzo: { qui: 'Enzo propose', quoi: 'Le bouvier bernois', pourquoi: 'Gros, doux, et il peut porter les sacs.', pv: 'le bouvier bernois', dit: 'Bah… le mien, du coup.' },
+    jp: { qui: 'JP propose', quoi: 'Le berger américain', pourquoi: 'JP a fait ses recherches. Il sait ce qu’il fait.', pv: 'le berger américain', dit: 'Celui-là. Pour des raisons.', slogan: 'Il sait ce qu’il fait.' },
+    gerard: { qui: 'Gérard propose', quoi: 'Le teckel poil long', pourquoi: 'Petit, poilu, un peu ronchon. Gérard s’y reconnaît.', pv: 'le teckel poil long', dit: 'Le teckel. Évidemment.', slogan: 'Petit. Poilu. Un peu ronchon.' },
+    enzo: { qui: 'Enzo propose', quoi: 'Le bouvier bernois', pourquoi: 'Gros, doux, et il peut porter les sacs.', pv: 'le bouvier bernois', dit: 'Bah… le mien, du coup.', slogan: 'Gros. Doux. Il porte les sacs.' },
   };
+  // La vedette du site n°3 : le choix de la présidente
+  const vedette = () => (choix === 'autre' ? '«' + NB + alt + NB + '»' : prop(choix).pv);
+  function affiche() {
+    const autre = choix === 'autre';
+    const nom = autre ? alt : maj(prop(choix).pv);
+    const u = $('#aff-use');
+    const ref = autre ? '#citron' : '#ch-' + choix;
+    u.setAttribute('href', ref);
+    u.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', ref);
+    $('#aff-star').classList.toggle('citron', autre);
+    $('#aff-nom').textContent = nom;
+    $('#aff-nom').classList.toggle('long', nom.length > 22);
+    $('#aff-tag').textContent = autre ? 'Imposé par la présidente.' : prop(choix).slogan;
+  }
   const prop = (k) => PROPS[k];
   function phraseBalade() {
     if (meteo && meteo.mouille) return 'Si la pluie le permet. Gérard a un parapluie.';
@@ -640,7 +859,142 @@ h2{font-size:34px}
     await wait(700); appear($('#t-prog'));
     await wait(800); appear($('#b-suivant2'));
   });
-  $('#b-suivant2').addEventListener('click', () => go('s-mascotte'));
+  $('#b-suivant2').addEventListener('click', () => go('s-kiki'));
+
+  /* ---------- 4 bis. incident : Kiki fait tout tomber (le petit jeu) ---------- */
+  const DUREES = [1800, 1650, 1500, 1400, 1300, 1200, 1100, 1000]; // temps pour sauver l'objet, de plus en plus court
+  const OBJETS = {
+    tampon: 'Le tampon officiel. Gérard le cherchera trois semaines.',
+    rose: 'Le verre de rosé. Liberté, égalité… flaque.',
+    pv: 'Le procès-verbal. Enzo va tout réécrire.',
+    citron: 'Le citron présidentiel. Il a roulé sous le canapé.',
+    lunettes: 'Les lunettes de Gérard. Il n’y voyait déjà pas grand-chose.',
+  };
+  const VISE = {
+    tampon: 'Kiki vise le tampon…', rose: 'Kiki vise le rosé…', pv: 'Kiki vise le procès-verbal…',
+    citron: 'Kiki vise le citron…', lunettes: 'Kiki vise les lunettes de Gérard…',
+  };
+  const SAUVE = ['Sauvé.', 'Non, Kiki.', 'Bien tenté, Kiki.', 'Kiki fait comme si de rien n’était.', 'Réflexes de présidente.', 'Kiki te fixe. Il prépare sa vengeance.'];
+  const kiki = $('#kiki');
+  const bureau = $('#bureau');
+  const k = { sauves: 0, degats: 0, tour: 0, cible: null, timer: 0, fin: null, enJeu: false, joue: false };
+  const restants = () => [...bureau.querySelectorAll('.objet')].filter((o) => !o.classList.contains('tombe'));
+  function kHud() { $('#k-hud').textContent = 'Sauvetages ' + k.sauves + ' · Dégâts ' + k.degats; }
+  function kMsg(t) { const m = $('#k-msg'); m.textContent = t; appear(m); }
+  function kVerdict() {
+    if (k.sauves === k.tour) return 'Tout est sauvé. Kiki est vexé.';
+    if (k.sauves >= k.tour - 2) return 'Quelques dégâts. Kiki ne regrette rien.';
+    if (k.sauves * 2 >= k.tour) return 'Match nul. Kiki réclame une revanche.';
+    return 'Kiki a gagné. Il est très fier de lui.';
+  }
+  const kScore = () => k.sauves + ' sur ' + k.tour;
+  function kRegler(o) { // l'objet est sauvé ou tombé : on passe à la suite
+    clearTimeout(k.timer);
+    o.classList.remove('menace');
+    kiki.classList.remove('pousse');
+    k.cible = null;
+    const fin = k.fin; k.fin = null;
+    if (fin) fin();
+  }
+  function kSauver(o) {
+    if (!k.enJeu || o !== k.cible) return;
+    o.style.transition = 'transform .22s ease-out';
+    o.style.transform = '';
+    o.classList.remove('ouf'); void o.offsetWidth; o.classList.add('ouf');
+    k.sauves++;
+    kHud();
+    kMsg(SAUVE[(k.sauves - 1) % SAUVE.length]);
+    buzz(15);
+    kiki.classList.remove('vexe'); void kiki.getBoundingClientRect(); kiki.classList.add('vexe');
+    kRegler(o);
+  }
+  function kTomber(o) {
+    o.classList.add('tombe');
+    o.disabled = true;
+    k.degats++;
+    kHud();
+    kMsg(OBJETS[o.dataset.o]);
+    buzz([40, 40, 80]);
+    kRegler(o);
+  }
+  function kAttaque() {
+    return new Promise(async (res) => {
+      const dispo = restants();
+      let choix = dispo.filter((o) => o !== k.derniere);
+      if (!choix.length) choix = dispo;
+      const o = choix[Math.floor(Math.random() * choix.length)];
+      k.derniere = o;
+      kiki.classList.add('marche');
+      kiki.style.left = (o.offsetLeft + o.offsetWidth / 2 - kiki.clientWidth / 2) + 'px';
+      await wait(520);
+      kiki.classList.remove('marche');
+      kiki.classList.add('pousse');
+      kMsg(VISE[o.dataset.o]);
+      await wait(200);
+      const d = DUREES[k.tour++];
+      const r = (Math.random() < 0.5 ? -9 : 9) + 'deg';
+      o.style.setProperty('--r', r);
+      o.style.transition = 'transform ' + d + 'ms cubic-bezier(.5,0,.85,.55)';
+      o.style.transform = 'translateY(118px) rotate(' + r + ')';
+      o.classList.add('menace');
+      k.cible = o;
+      k.fin = res;
+      k.timer = setTimeout(() => kTomber(o), d);
+    });
+  }
+  function kTouche(e) {
+    if (!k.cible) return;
+    const t = e.target.closest ? e.target.closest('.objet, .kiki') : null;
+    if (t && (t === k.cible || t === kiki)) { e.preventDefault(); kSauver(k.cible); }
+  }
+  bureau.addEventListener(window.PointerEvent ? 'pointerdown' : 'touchstart', kTouche, { passive: false });
+  function kPreparer() {
+    clearTimeout(k.timer);
+    Object.assign(k, { sauves: 0, degats: 0, tour: 0, cible: null, fin: null, derniere: null });
+    bureau.querySelectorAll('.objet').forEach((o) => {
+      o.classList.remove('menace', 'tombe', 'ouf');
+      o.disabled = false;
+      o.style.transition = 'none';
+      o.style.transform = '';
+    });
+    kiki.style.left = '';
+    kiki.classList.remove('pousse', 'marche', 'vexe');
+    kHud();
+    $('#k-msg').textContent = '';
+    $('#k-bilan').hidden = true;
+    $('#b-reprendre').hidden = true;
+    $('#b-rejouer-kiki').hidden = true;
+  }
+  async function kPartie() {
+    kPreparer();
+    k.enJeu = true;
+    $('#b-kiki').hidden = false;
+    $('#b-kiki').style.visibility = 'hidden'; // il garde sa place : la table ne bouge pas pendant la partie
+    kMsg('Kiki s’étire…');
+    await wait(700);
+    while (k.tour < DUREES.length && restants().length) {
+      await kAttaque();
+      await wait(480);
+    }
+    k.enJeu = false;
+    k.joue = true;
+    kiki.classList.add('marche');
+    kiki.style.left = (bureau.clientWidth + 20) + 'px';
+    kMsg('Kiki descend de la table, l’air satisfait.');
+    await wait(900);
+    $('#b-kiki').hidden = true;
+    $('#b-kiki').style.visibility = '';
+    $('#k-score').textContent = 'Sauvetages' + NB + ': ' + kScore();
+    $('#k-verdict').textContent = kVerdict();
+    appear($('#k-bilan'));
+    await wait(500);
+    appear($('#b-reprendre'));
+    appear($('#b-rejouer-kiki'));
+    $('#b-reprendre').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  }
+  $('#b-kiki').addEventListener('click', () => { if (!k.enJeu) kPartie(); });
+  $('#b-rejouer-kiki').addEventListener('click', () => { if (!k.enJeu) kPartie(); });
+  $('#b-reprendre').addEventListener('click', () => go('s-mascotte'));
 
   /* ---------- 5. la mascotte : la présidente tranche ---------- */
   $('#b-vote2').addEventListener('click', async () => {
@@ -720,6 +1074,9 @@ h2{font-size:34px}
       ? 'Imposée par la présidente' + NB + ': «' + NB + alt + NB + '».'
       : 'Validée par la présidente' + NB + ': ' + prop(choix).pv + '.';
     $('#pv-meteo').textContent = clauseMeteo();
+    $('#pv-kiki').textContent = 'Kiki est monté sur la table. Sauvetages' + NB + ': ' + kScore() + '. ' + kVerdict();
+    $('#pv-site').textContent = 'Le site n°3 aura pour vedette ' + vedette() + '.';
+    affiche();
     $('#ps').hidden = true;
     $('#fin').hidden = true;
     $('#b-signature').hidden = false;
@@ -815,8 +1172,7 @@ h2{font-size:34px}
     fin.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   });
   function reponse() {
-    if (choix === 'autre') return 'PV signé 🍋 Mascotte du comité' + NB + ': ' + alt + '. La présidente a tranché.';
-    return 'PV signé 🍋 Mascotte du comité' + NB + ': ' + prop(choix).pv + '. La présidente a tranché.';
+    return 'PV signé 🍋 La présidente a tranché' + NB + ': ' + vedette() + ' sera la vedette du site n°3. Score contre Kiki' + NB + ': ' + kScore() + '.';
   }
   // Copie à l'ancienne, pour les navigateurs intégrés (Instagram sur iPhone) qui refusent le presse-papiers moderne
   function copieAncienne(t) {
