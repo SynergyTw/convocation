@@ -146,6 +146,12 @@ h2{font-size:34px}
 .prop .stamp::before{top:2px;left:2px;right:2px;bottom:2px}
 .prop.alt .emblem-av{width:46px;height:46px;grid-row:1 / span 4;align-self:start}
 .hint{margin:0;text-align:center;color:var(--ink-2);font-size:15px}
+.intro{margin:-6px 0 0;color:var(--ink-2);font-size:16px}
+.prog-zone{position:relative}
+.prop.prog{cursor:default}
+.prop.prog .av{grid-row:1 / span 3}
+.prop.prog .who{padding-right:0}
+#st-prog{right:2px;bottom:-16px;font-size:20px}
 .autre{display:flex;flex-direction:column;gap:10px}
 .autre input{width:100%;min-height:52px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:500 17px var(--f-body)}
 .autre input:focus{outline:none;border-color:var(--ink)}
@@ -349,7 +355,7 @@ h2{font-size:34px}
     <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-jp" xlink:href="#av-jp"/></svg><div><b>Jean-Pierre, dit JP</b><span>Vice-président chargé du charme</span></div></li>
     <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-gerard" xlink:href="#av-gerard"/></svg><div><b>Gérard</b><span>Doyen. Rarement consulté.</span></div></li>
     <li><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-enzo" xlink:href="#av-enzo"/></svg><div><b>Enzo</b><span>Secrétaire de séance</span></div></li>
-    <li class="excuse"><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#ece6d8"/><ellipse cx="55" cy="64" rx="26" ry="15" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M75 70Q86 66 81 55Q79 62 70 64" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M26 50L27 37L35 44Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M40 44L47 36L49 49Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><circle cx="37" cy="54" r="13" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M30 54q3 2.4 6 0M38.5 54q3 2.4 6 0" fill="none" stroke="#1e2944" stroke-width="1.8" stroke-linecap="round"/><path d="M35.5 58.6q1.6 1.3 3.2 0" fill="none" stroke="#1e2944" stroke-width="1.4" stroke-linecap="round"/><text x="62" y="37" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="15" fill="#5b6479">z</text><text x="72" y="27" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="11" fill="#5b6479">z</text></svg><div><b>Skouat</b><span>Excusé (sieste)</span></div></li>
+    <li class="excuse"><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#ece6d8"/><ellipse cx="55" cy="64" rx="26" ry="15" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M75 70Q86 66 81 55Q79 62 70 64" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M26 50L27 37L35 44Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><path d="M40 44L47 36L49 49Z" fill="#d3cab8" stroke="#5b6479" stroke-width="2" stroke-linejoin="round"/><circle cx="37" cy="54" r="13" fill="#d3cab8" stroke="#5b6479" stroke-width="2"/><path d="M30 54q3 2.4 6 0M38.5 54q3 2.4 6 0" fill="none" stroke="#1e2944" stroke-width="1.8" stroke-linecap="round"/><path d="M35.5 58.6q1.6 1.3 3.2 0" fill="none" stroke="#1e2944" stroke-width="1.4" stroke-linecap="round"/><text x="62" y="37" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="15" fill="#5b6479">z</text><text x="72" y="27" font-family="Courier Prime, Courier New, monospace" font-weight="700" font-size="11" fill="#5b6479">z</text></svg><div><b>Skouat et Lilou</b><span>Excusés (sieste)</span></div></li>
   </ul>
   <p class="quorum" id="quorum" hidden>Quorum atteint.</p>
   <p class="aside" id="aside" hidden>(Les trois, c’est moi.)</p>
@@ -374,26 +380,44 @@ h2{font-size:34px}
   <button class="btn" id="b-suivant" type="button" hidden>Point suivant</button>
 </section>
 
-<!-- 4. Point n°2 : mercredi -->
-<section class="scene" id="s-mercredi" hidden>
+<!-- 4. Point n°2 : le programme de mercredi (déjà négocié) -->
+<section class="scene" id="s-programme" hidden>
   <p class="kicker">Ordre du jour · point n°2</p>
   <h2 class="big">Mercredi 28&nbsp;octobre, l’après-midi</h2>
   <div class="bulletin">
     <svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-gerard" xlink:href="#av-gerard"/></svg>
     <div><b>Bulletin météo de Gérard</b><p id="meteo-txt">Gérard cherche ses lunettes…</p><p class="verdict" id="meteo-verdict" hidden></p></div>
   </div>
+  <div class="prog-zone">
+    <div class="props">
+      <div class="prop prog"><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-jp" xlink:href="#av-jp"/></svg><span class="who">JP s’occupe de</span><span class="what">Un verre en ville</span><span class="why">Idéalement à la table d’un pote en plein date.</span></div>
+      <div class="prop prog"><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-enzo" xlink:href="#av-enzo"/></svg><span class="who">Enzo s’occupe de</span><span class="what">Une balade</span><span class="why" id="prog-balade">Le plus beau fond d’écran de Lyon.</span></div>
+      <div class="prop prog"><svg class="av" viewBox="0 0 100 100" aria-hidden="true"><use href="#av-gerard" xlink:href="#av-gerard"/></svg><span class="who">Gérard s’occupe de</span><span class="what">Les boutiques</span><span class="why">Gérard porte les sacs. Il proteste.</span></div>
+    </div>
+    <div class="stamp" id="st-prog" hidden>Unanimité</div>
+  </div>
+  <p class="tally" id="t-prog" hidden>Déjà négocié en DM. Pour une fois, Gérard est d’accord.</p>
+  <button class="btn" id="b-prog" type="button">Mettre aux voix</button>
+  <button class="btn" id="b-suivant2" type="button" hidden>Point suivant</button>
+</section>
+
+<!-- 5. Point n°3 : la mascotte du comité -->
+<section class="scene" id="s-mascotte" hidden>
+  <p class="kicker">Ordre du jour · point n°3</p>
+  <h2 class="big">La mascotte du comité</h2>
+  <p class="intro">Le comité veut une mascotte. Les avis divergent.</p>
   <p class="hint" id="hint" hidden>Touche ta proposition préférée.</p>
   <div class="props" id="props"></div>
   <button class="link" id="b-autre" type="button" hidden>Aucune ne me va</button>
   <form class="autre" id="f-autre" hidden>
-    <input id="i-autre" type="text" maxlength="80" autocomplete="off" placeholder="Ta proposition" aria-label="Ta proposition">
+    <input id="i-autre" type="text" maxlength="80" autocomplete="off" placeholder="Ta mascotte" aria-label="Ta mascotte">
     <button class="btn ghost" type="submit">Proposer</button>
   </form>
   <button class="btn" id="b-vote2" type="button">Passer au vote</button>
   <button class="btn" id="b-signer" type="button" hidden>Signer le procès-verbal</button>
 </section>
 
-<!-- 5. Le procès-verbal -->
+<!-- 6. Le procès-verbal -->
 <section class="scene" id="s-pv" hidden>
   <div class="doc pv">
     <p class="org">Comité JP &amp; Gérard</p>
@@ -401,8 +425,10 @@ h2{font-size:34px}
     <p class="sub" id="pv-date">Séance extraordinaire</p>
     <ol class="articles">
       <li><b>Point n°1 · La nouvelle coupe</b>Adoptée (2&nbsp;voix pour, 1&nbsp;bouderie). Ce n’est pas un carré.</li>
-      <li><b>Point n°2 · Mercredi 28&nbsp;octobre</b><span id="pv-choix"></span></li>
+      <li><b>Point n°2 · Mercredi 28&nbsp;octobre</b>Adopté à l’unanimité&nbsp;: un verre en ville, une balade, les boutiques.</li>
+      <li><b>Point n°3 · La mascotte</b><span id="pv-choix"></span></li>
       <li><b>Clause météo</b><span id="pv-meteo"></span></li>
+      <li><b>Clause alimentaire</b>Sans gluten pour la présidente, sans lactose pour le secrétaire.</li>
       <li><b>Article&nbsp;4</b>Les blagues caca restent autorisées (cf.&nbsp;23h17).</li>
       <li><b>Article&nbsp;5 · Un site par semaine</b>Engagement maintenu. Gérard demande des congés payés.</li>
     </ol>
@@ -532,17 +558,17 @@ h2{font-size:34px}
     return 'Grand beau (Gérard boude).';
   }
 
-  /* ---------- les propositions du comité ---------- */
+  /* ---------- point n°3 : les mascottes proposées ---------- */
   const PROPS = {
-    jp: { qui: 'JP propose', quoi: 'Un verre dans un bar cosy', pourquoi: 'Coin canapé, charme au maximum.', pv: 'un verre dans un bar cosy', dit: 'Moi.' },
-    gerard: { qui: 'Gérard propose', quoi: 'Un ciné', pourquoi: 'Au chaud, assis, et personne ne parle.', pv: 'un ciné', dit: 'Moi. Évidemment.' },
-    enzo: { qui: 'Enzo propose', quoi: 'Une balade sur les quais', pourquoi: 'Le plus beau fond d’écran de Lyon.', pv: 'une balade sur les quais', dit: 'Bah… moi, du coup.' },
+    jp: { qui: 'JP propose', quoi: 'Le berger américain', pourquoi: 'JP a fait ses recherches. Il sait ce qu’il fait.', pv: 'le berger américain', dit: 'Celui-là. Pour des raisons.' },
+    gerard: { qui: 'Gérard propose', quoi: 'Le teckel poil long', pourquoi: 'Petit, poilu, un peu ronchon. Gérard s’y reconnaît.', pv: 'le teckel poil long', dit: 'Le teckel. Évidemment.' },
+    enzo: { qui: 'Enzo propose', quoi: 'Le bouvier bernois', pourquoi: 'Gros, doux, et il peut porter les sacs.', pv: 'le bouvier bernois', dit: 'Bah… le mien, du coup.' },
   };
-  function prop(k) {
-    if (k !== 'enzo') return PROPS[k];
-    if (meteo && meteo.mouille) return { qui: 'Enzo propose', quoi: 'Un resto, au sec', pourquoi: 'Gérard a vu la météo.', pv: 'un resto, au sec', dit: 'Bah… moi, du coup.' };
-    if (meteo && meteo.t <= 13) return Object.assign({}, PROPS.enzo, { pourquoi: 'Le plus beau fond d’écran de Lyon. Gérard prête son écharpe.' });
-    return PROPS.enzo;
+  const prop = (k) => PROPS[k];
+  function phraseBalade() {
+    if (meteo && meteo.mouille) return 'Si la pluie le permet. Gérard a un parapluie.';
+    if (meteo && meteo.t <= 13) return 'Le plus beau fond d’écran de Lyon. Gérard prête son écharpe.';
+    return 'Le plus beau fond d’écran de Lyon.';
   }
   let voteFait = false;
   let choix = null;
@@ -572,7 +598,7 @@ h2{font-size:34px}
     $('#meteo-txt').textContent = b.txt;
     $('#meteo-verdict').textContent = b.verdict;
     $('#meteo-verdict').hidden = !b.verdict;
-    if (!voteFait) construireCartes();
+    $('#prog-balade').textContent = phraseBalade();
   }
 
   /* ---------- 1. convocation ---------- */
@@ -605,9 +631,18 @@ h2{font-size:34px}
     await wait(500); appear($('#t-carre'));
     await wait(700); appear($('#b-suivant'));
   });
-  $('#b-suivant').addEventListener('click', () => go('s-mercredi'));
+  $('#b-suivant').addEventListener('click', () => go('s-programme'));
 
-  /* ---------- 4. mercredi ---------- */
+  /* ---------- 4. le programme (déjà négocié) ---------- */
+  $('#b-prog').addEventListener('click', async () => {
+    $('#b-prog').hidden = true;
+    stamp($('#st-prog'));
+    await wait(700); appear($('#t-prog'));
+    await wait(800); appear($('#b-suivant2'));
+  });
+  $('#b-suivant2').addEventListener('click', () => go('s-mascotte'));
+
+  /* ---------- 5. la mascotte : la présidente tranche ---------- */
   $('#b-vote2').addEventListener('click', async () => {
     if (voteFait) return;
     voteFait = true;
@@ -631,13 +666,13 @@ h2{font-size:34px}
   });
   $('#b-trancher').addEventListener('click', () => {
     $('#egalite').hidden = true;
-    document.querySelectorAll('.prop').forEach((c) => { c.disabled = false; c.classList.add('live'); });
+    document.querySelectorAll('#props .prop').forEach((c) => { c.disabled = false; c.classList.add('live'); });
     appear($('#hint'));
     appear($('#b-autre'));
     $('#hint').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   });
   function marquer(k) {
-    document.querySelectorAll('.prop').forEach((c) => {
+    document.querySelectorAll('#props .prop').forEach((c) => {
       const on = c.dataset.k === k;
       c.classList.toggle('chosen', on);
       c.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -682,8 +717,8 @@ h2{font-size:34px}
   $('#b-signer').addEventListener('click', async () => {
     $('#pv-date').textContent = 'Séance extraordinaire du ' + dateJour();
     $('#pv-choix').textContent = choix === 'autre'
-      ? 'Proposé par la présidente' + NB + ': «' + NB + alt + NB + '».'
-      : 'Validé par la présidente' + NB + ': ' + prop(choix).pv + '.';
+      ? 'Imposée par la présidente' + NB + ': «' + NB + alt + NB + '».'
+      : 'Validée par la présidente' + NB + ': ' + prop(choix).pv + '.';
     $('#pv-meteo').textContent = clauseMeteo();
     $('#ps').hidden = true;
     $('#fin').hidden = true;
@@ -780,8 +815,8 @@ h2{font-size:34px}
     fin.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   });
   function reponse() {
-    if (choix === 'autre') return 'PV signé 🍋 Mercredi, la présidente propose' + NB + ': ' + alt + '.';
-    return 'PV signé 🍋 Mercredi' + NB + ': ' + prop(choix).pv + '. La présidente a tranché.';
+    if (choix === 'autre') return 'PV signé 🍋 Mascotte du comité' + NB + ': ' + alt + '. La présidente a tranché.';
+    return 'PV signé 🍋 Mascotte du comité' + NB + ': ' + prop(choix).pv + '. La présidente a tranché.';
   }
   // Copie à l'ancienne, pour les navigateurs intégrés (Instagram sur iPhone) qui refusent le presse-papiers moderne
   function copieAncienne(t) {
@@ -821,10 +856,11 @@ h2{font-size:34px}
       b.textContent = 'Sélectionné, copie-le';
     }
   });
-  $('#b-changer').addEventListener('click', () => go('s-mercredi'));
+  $('#b-changer').addEventListener('click', () => go('s-mascotte'));
   $('#b-rejouer').addEventListener('click', () => location.reload());
 
   /* ---------- départ ---------- */
+  construireCartes();
   onMeteo();
   (async () => {
     try {
