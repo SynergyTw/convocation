@@ -233,6 +233,34 @@ h2{font-size:34px}
 .levee{margin:4px 0 2px;text-align:center;font:800 30px/1.1 var(--f-title)}
 .fin .hint{margin-top:-2px}
 
+/* ---------- le portrait officiel (il bouge, comme à Poudlard) ---------- */
+.portrait{margin:0 0 8px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.cadre{display:block;width:100%;max-width:300px;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  filter:drop-shadow(0 14px 16px rgba(30,41,68,.32))}
+.cadre svg{display:block;width:100%;height:auto}
+.plaque{margin:0;padding:7px 14px 6px;border-radius:6px;background:linear-gradient(135deg,#f3d27a,#c99a3a 55%,#e9c060);color:#3a2a0c;text-align:center;
+  font:400 11.5px/1.4 var(--f-mono);box-shadow:inset 0 0 0 1px rgba(122,90,28,.55),0 2px 6px -2px rgba(30,41,68,.35)}
+.plaque b{display:block;font:700 12px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+.portrait-hint{margin:0;min-height:1.3em;text-align:center;font:italic 500 17px/1.3 var(--f-title);color:var(--ink-2)}
+.portrait .vol{animation:flotte 3.2s ease-in-out infinite alternate}
+.portrait .cape{transform-origin:118px 160px;animation:cape 1.1s ease-in-out infinite alternate}
+.portrait .cheveux-vol{transform-origin:135px 100px;animation:meche 1.5s ease-in-out infinite alternate}
+.portrait .echarpe-vol{transform-origin:122px 156px;animation:meche .9s ease-in-out infinite alternate}
+.portrait .etoile{animation:scintille 2.4s ease-in-out infinite}
+.portrait .etoile.e2{animation-delay:-.8s}
+.portrait .etoile.e3{animation-delay:-1.6s}
+.portrait .yeux{transform-box:fill-box;transform-origin:center;animation:cligne 4.6s infinite}
+.portrait .zz{animation:zz 2.6s ease-in-out infinite}
+.portrait .boucle{transform-origin:150px 205px}
+.portrait .boucle.tourne{animation:boucle 1.2s cubic-bezier(.45,0,.25,1)}
+@keyframes flotte{from{transform:translateY(5px) rotate(.6deg)}to{transform:translateY(-6px) rotate(-.8deg)}}
+@keyframes cape{from{transform:skewY(-2deg)}to{transform:skewY(3deg) scaleX(1.03)}}
+@keyframes meche{to{transform:rotate(2.5deg)}}
+@keyframes scintille{50%{opacity:.25}}
+@keyframes cligne{0%,92%,100%{transform:none}95%{transform:scaleY(.1)}}
+@keyframes zz{0%{opacity:0;transform:translate(0,4px)}30%{opacity:1}100%{opacity:0;transform:translate(4px,-6px)}}
+@keyframes boucle{to{transform:rotate(-360deg)}}
+
 /* ---------- l'affiche du site n°3 ---------- */
 .affiche{position:relative;overflow:hidden;margin:0 0 6px;padding:18px 18px 14px;border-radius:10px;background:var(--ink);color:#fffdf8;text-align:center;
   box-shadow:0 18px 36px -18px rgba(30,41,68,.6)}
@@ -260,6 +288,7 @@ h2{font-size:34px}
 @media (prefers-reduced-motion:reduce){
   .scene,.say,.members li,.prop .voix,.kiki{transition-duration:.01s}
   .kiki .k-queue,.kiki.marche,.kiki.vexe,.objet.ouf svg{animation:none}
+  .portrait .vol,.portrait .cape,.portrait .cheveux-vol,.portrait .echarpe-vol{animation:none}
   .appear,.stamp.hit,.pad.signed .seal,.say.boude .av,.fin:not([hidden]) .aff-star{animation-duration:.01s;animation-delay:0s}
 }
 </style>
@@ -652,6 +681,149 @@ h2{font-size:34px}
   <button class="btn" id="b-signature" type="button" disabled>Signer le procès-verbal</button>
   <div class="fin" id="fin" hidden>
     <p class="levee">Séance levée.</p>
+    <figure class="portrait" id="portrait">
+      <button class="cadre" id="b-portrait" type="button" aria-label="Le portrait officiel de la présidente : en sorcière de Serdaigle sur son Nimbus 2000, avec Skouat endormi au bout du balai. Touche-le.">
+      <svg viewBox="0 0 300 360" aria-hidden="true">
+  <defs>
+    <linearGradient id="pCiel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1530"/><stop offset="1" stop-color="#26397a"/></linearGradient>
+    <linearGradient id="pOr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3d27a"/><stop offset=".45" stop-color="#b8862b"/><stop offset=".7" stop-color="#e9c060"/><stop offset="1" stop-color="#a87a24"/></linearGradient>
+    <radialGradient id="pLune"><stop offset="0" stop-color="#f6f0d6" stop-opacity=".35"/><stop offset="1" stop-color="#f6f0d6" stop-opacity="0"/></radialGradient>
+    <clipPath id="pToile"><rect x="22" y="22" width="256" height="316" rx="6"/></clipPath>
+  </defs>
+  <rect x="2" y="2" width="296" height="356" rx="14" fill="url(#pOr)"/>
+  <rect x="11" y="11" width="278" height="338" rx="10" fill="none" stroke="#7a5a1c" stroke-width="2"/>
+  <rect x="22" y="22" width="256" height="316" rx="6" fill="url(#pCiel)"/>
+  <g clip-path="url(#pToile)">
+    <circle cx="228" cy="74" r="46" fill="url(#pLune)"/>
+    <circle cx="228" cy="74" r="21" fill="#f6f0d6"/>
+    <circle cx="221" cy="69" r="3.5" fill="#e6dfc0"/><circle cx="234" cy="82" r="2.5" fill="#e6dfc0"/>
+    <g fill="#fff8dc">
+      <circle class="etoile" cx="46" cy="48" r="1.6"/><circle class="etoile e2" cx="84" cy="88" r="1.2"/><circle class="etoile e3" cx="112" cy="40" r="1.4"/>
+      <circle class="etoile e2" cx="166" cy="62" r="1.1"/><circle class="etoile" cx="190" cy="34" r="1.5"/><circle class="etoile e3" cx="196" cy="118" r="1.3"/>
+      <circle class="etoile e3" cx="56" cy="128" r="1"/><circle class="etoile" cx="258" cy="186" r="1.1"/><circle class="etoile e2" cx="34" cy="176" r="1.2"/>
+    </g>
+    <!-- le château -->
+    <path d="M22 338V304H34V284L40 270L46 284V304H58V296H64V300H72V272H70L78 252L86 272H84V300H98V290H106V296H116V306H190V286L198 266L206 286V306H214V296H222V300H232V278L240 260L248 278V300H260V292H268V304H278V338Z" fill="#0a0f22"/>
+    <g fill="#f2cf3b" opacity=".85"><rect x="76" y="280" width="3" height="5" rx="1.5"/><rect x="38" y="292" width="2.5" height="4" rx="1.2"/><rect x="196" y="292" width="3" height="5" rx="1.5"/><rect x="238" y="284" width="2.5" height="4" rx="1.2"/></g>
+
+    <!-- elle, sur son balai -->
+    <g class="boucle"><g class="vol"><g transform="translate(160 190) scale(.9) translate(-150 -190)">
+      <path d="M6 206H30M2 278H26" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 5"/>
+      <!-- la cape, qui flotte derrière -->
+      <g class="cape">
+        <path d="M118 158C92 160 64 170 40 188C52 194 44 206 28 216C60 216 88 210 112 216Z" fill="#16141e"/>
+        <path d="M112 168C92 174 72 184 56 196C74 198 92 202 110 208Z" fill="#2b4c9b"/>
+      </g>
+      <!-- les cheveux longs, qui volent derrière elle -->
+      <g class="cheveux-vol">
+        <path d="M138 86C118 84 100 92 88 106C76 120 70 136 54 150C72 153 86 147 96 161C104 151 112 153 118 143C117 151 121 157 127 157H150C156 150 160 138 160 120C160 100 154 88 138 86Z" fill="#8d6b46"/>
+        <path d="M128 92C110 96 92 112 72 142M134 97C118 105 104 123 94 154M114 104C100 116 90 132 82 146" stroke="#d3b47e" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".85"/>
+        <path d="M138 88C124 88 112 92 104 100" stroke="#5f4430" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+      </g>
+      <!-- le bout d'écharpe qui vole -->
+      <g class="echarpe-vol">
+        <path d="M124 152C106 146 94 156 80 146C73 141 66 143 58 138L56 150C64 154 71 153 79 159C94 170 107 161 122 163Z" fill="#233f86"/>
+        <path d="M104 150L102 162M88 150L86 162M72 146L70 156" stroke="#b5803e" stroke-width="3.2"/>
+        <path d="M57 138L52 136M56 142L50 141M56 146L50 147M56 150L51 152" stroke="#233f86" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+      <!-- le balai -->
+      <path d="M44 233L8 216L0 242L8 268L44 248Z" fill="#c9963f"/>
+      <path d="M42 237L8 222M42 241L4 236M42 244L4 250M42 246L10 262" stroke="#9d6f27" stroke-width="1.2"/>
+      <path d="M40 240.5L268 216" stroke="#6a3b1c" stroke-width="8" stroke-linecap="round"/>
+      <path d="M60 236.5L264 214.3" stroke="#a46a3c" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+      <path d="M44 240.2L54 239.1" stroke="#e2b44a" stroke-width="10"/>
+      <text transform="translate(203.5 225.2) rotate(-5.9)" font-family="Courier Prime,Courier New,monospace" font-weight="700" font-size="5.6" letter-spacing=".5" fill="#f2cf3b">NIMBUS 2000</text>
+      <!-- jambes et robe -->
+      <path d="M140 262L136 298M154 262L161 296" stroke="#2a2733" stroke-width="9" stroke-linecap="round"/>
+      <ellipse cx="133" cy="301" rx="7" ry="4" fill="#111016"/><ellipse cx="164" cy="299" rx="7" ry="4" fill="#111016"/>
+      <path d="M112 212Q104 240 114 268Q140 278 168 266Q172 238 166 212Z" fill="#1f1d29"/>
+      <path d="M114 266Q140 276 167 264" stroke="#2b4c9b" stroke-width="2.4" fill="none"/>
+      <!-- le buste -->
+      <path d="M112 162Q103 192 110 222H166Q173 192 162 162Q150 154 137 154Q124 154 112 162Z" fill="#1f1d29"/>
+      <path d="M128 157L137 188L146 157Z" fill="#7f8494"/>
+      <path d="M128 157L137 188L146 157" stroke="#2b4c9b" stroke-width="2" fill="none" stroke-linejoin="round"/>
+      <!-- l'écharpe autour du cou, et le bout qui pend -->
+      <path d="M146 158L150 202L163 199L156 156Z" fill="#233f86"/>
+      <path d="M148 172L159 170M149 186L161 184" stroke="#b5803e" stroke-width="3.4"/>
+      <path d="M151 202L151 207M154 201.5L154.5 206.5M157 201L158 206M160 200L161.5 205" stroke="#233f86" stroke-width="1.4" stroke-linecap="round"/>
+      <rect x="131" y="132" width="12" height="18" rx="4" fill="#e9bf9c"/>
+      <path d="M116 146Q137 160 158 146L160 157Q137 171 114 157Z" fill="#233f86"/>
+      <path d="M122 151.5L121 162M137 155L137 166M152 151.5L153 162" stroke="#b5803e" stroke-width="3"/>
+      <!-- la tête -->
+      <g class="tete">
+        <ellipse cx="137" cy="113" rx="19.5" ry="22.5" fill="#f3d0b2"/>
+        <path d="M118 118Q121 132 137 135.5Q153 132 156 118Q152 128 137 130Q122 128 118 118Z" fill="#e9bf9c" opacity=".6"/>
+        <g class="yeux">
+          <ellipse cx="129.5" cy="113.5" rx="2.6" ry="2.9" fill="#fff"/><ellipse cx="144.5" cy="113.5" rx="2.6" ry="2.9" fill="#fff"/>
+          <circle cx="129.8" cy="113.7" r="2" fill="#7f9584"/><circle cx="144.8" cy="113.7" r="2" fill="#7f9584"/>
+          <circle cx="129.8" cy="113.7" r=".95" fill="#22201f"/><circle cx="144.8" cy="113.7" r=".95" fill="#22201f"/>
+          <circle cx="130.5" cy="112.9" r=".55" fill="#fff"/><circle cx="145.5" cy="112.9" r=".55" fill="#fff"/>
+          <path d="M126.6 112.2Q129.5 109.8 132.6 112M141.6 112Q144.5 109.8 147.4 112.2" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        </g>
+        <path d="M125 107.4Q129 104.6 133.6 106.2M140.4 106.2Q145 104.6 149 107.4" stroke="#4a3424" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M137.4 113.5Q139.8 119.5 136.4 120.6" stroke="#d6a080" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        <circle cx="124" cy="121.5" r="3.6" fill="#f08f8f" opacity=".28"/><circle cx="150" cy="121.5" r="3.6" fill="#f08f8f" opacity=".28"/>
+        <path d="M131.5 125.4Q137.5 127.6 143.6 124.4Q138 130.4 131.5 125.4Z" fill="#d48a86"/>
+        <path d="M131 125.3Q137.4 127.4 144 124.2" stroke="#a5605a" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <!-- les lunettes : grandes, fines, dorées, verres rosés -->
+        <g stroke="#c9a24a" stroke-width="1.1" fill="#f7c3bb" fill-opacity=".3">
+          <rect x="122.6" y="107.6" width="13.4" height="11.6" rx="2.6"/>
+          <rect x="138" y="107.6" width="13.4" height="11.6" rx="2.6"/>
+        </g>
+        <path d="M136 110.6Q137 109.6 138 110.6M122.6 110L118.5 109M151.4 110L155.5 109" stroke="#c9a24a" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <!-- les cheveux de devant : raie sur le côté, mèches qui encadrent le visage -->
+        <path d="M117 117C113 98 122 87 137 87C152 87 161 98 157.5 119C155.5 108 152 102 147 99C141 99.5 135 97 130.5 93.5C127 99.5 121.5 104.5 117 117Z" fill="#8d6b46"/>
+        <path d="M130.5 93.5C126 99 121 104 118 112M134 92C142 95 150 98 155 108" stroke="#d3b47e" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".85"/>
+        <path d="M151 100C160 110 162.5 124 159 137C157 147 161 153 167 159C156 160 149.5 151 150 140C150.5 128 155 116 148 104Z" fill="#8d6b46"/>
+        <path d="M154 108C158.5 120 157 134 156 144" stroke="#d3b47e" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/>
+        <path d="M123 100C116 108 113.5 121 116.5 134C111 127 108.5 114 113 103Z" fill="#8d6b46"/>
+      </g>
+      <!-- les bras et les mains sur le manche -->
+      <path d="M120 170Q150 198 176 222" stroke="#18161f" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M158 168Q176 196 190 220" stroke="#1f1d29" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <!-- les mains, et sa french -->
+      <g transform="translate(178 224.6) rotate(-5.9)">
+        <path d="M-6.5 -4.5Q0 -8.5 6.5 -4.5V3.8Q0 6.4 -6.5 3.8Z" fill="#f3d0b2"/>
+        <path d="M-3.2 -1V4.6M0 -1V5.2M3.2 -1V4.6" stroke="#e2b394" stroke-width=".7"/>
+        <path d="M-5.6 4.4H-3.8M-1.6 5.1H.6M1.9 4.9H3.7M4.6 4.2H5.9" stroke="#fffaf6" stroke-width="1.3" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(194.5 223) rotate(-5.9)">
+        <path d="M-6.5 -4.5Q0 -8.5 6.5 -4.5V3.8Q0 6.4 -6.5 3.8Z" fill="#f3d0b2"/>
+        <path d="M-3.2 -1V4.6M0 -1V5.2M3.2 -1V4.6" stroke="#e2b394" stroke-width=".7"/>
+        <path d="M-5.6 4.4H-3.8M-1.6 5.1H.6M1.9 4.9H3.7M4.6 4.2H5.9" stroke="#fffaf6" stroke-width="1.3" stroke-linecap="round"/>
+      </g>
+      <!-- Skouat, en boule sur la pointe du balai : il fait la sieste, même en vol -->
+      <g class="skouat" transform="translate(248 205) scale(1.15) translate(-248 -205)">
+        <path d="M229 207C218 206 215.5 194 221.5 188C224.5 185 228.5 187.5 226 191" stroke="#6e5640" stroke-width="4.6" stroke-linecap="round" fill="none"/>
+        <ellipse cx="243" cy="206" rx="16" ry="10.5" fill="#7d654a" transform="rotate(-6 243 206)"/>
+        <path d="M229 203Q240 193 254 198" stroke="#5e4a36" stroke-width="5" stroke-linecap="round" fill="none" opacity=".55"/>
+        <path d="M236 199Q238 206 236.5 213M242 197.5Q244 205 242.5 214M248 198Q249.5 205 248.5 212" stroke="#4b3a2b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <ellipse cx="252" cy="215" rx="3.6" ry="2.2" fill="#a48b6b"/><ellipse cx="258.5" cy="214.2" rx="3.6" ry="2.2" fill="#a48b6b"/>
+        <path d="M250 205Q256.5 209.5 263.5 207L264 210.5Q256.5 213 249.5 209Z" fill="#233f86"/>
+        <path d="M251 206.5C246 204.5 242 208.5 237.5 204.5L236.5 208.5C241 212 246.5 209.5 250.5 210.5Z" fill="#233f86"/>
+        <path d="M241.5 206L241 210M256.5 208.6L256.5 211.6" stroke="#b5803e" stroke-width="1.6"/>
+        <path d="M250.5 193L249.5 180.5L258 188.5Z" fill="#7d654a"/><path d="M260.5 188L268.5 180.5L268.8 193Z" fill="#7d654a"/>
+        <path d="M251.6 190.5L251.2 184L255.6 188.4Z" fill="#d9a1a0"/><path d="M262.8 188L267.2 184L267.4 190.6Z" fill="#d9a1a0"/>
+        <circle cx="259.3" cy="198" r="10.4" fill="#7d654a"/>
+        <path d="M254.5 190.6L256 193.2L257.6 190.8L259.3 193.6L261 190.8L262.6 193.2L264 190.6" stroke="#4b3a2b" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M249.6 198.5H252.4M266.2 198.5H269" stroke="#4b3a2b" stroke-width="1.2" stroke-linecap="round"/>
+        <ellipse cx="259.3" cy="203.4" rx="5.2" ry="3.7" fill="#b39a78"/>
+        <path d="M252.6 199Q255 201.6 257.4 199M261.2 199Q263.6 201.6 266 199" stroke="#2e231a" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="253.6" cy="202.6" r="1.9" fill="#f08f8f" opacity=".35"/><circle cx="265" cy="202.6" r="1.9" fill="#f08f8f" opacity=".35"/>
+        <path d="M258.1 201.6H260.5L259.3 203Z" fill="#c98f84"/>
+        <path d="M257 204.3Q258.2 205.7 259.3 204.4Q260.4 205.7 261.6 204.3" stroke="#2e231a" stroke-width=".8" stroke-linecap="round" fill="none"/>
+        <path d="M254.5 203.6L247.5 202.4M254.5 205L248 205.8M264 203.6L271 202.4M264 205L270.5 205.8" stroke="#e8dccb" stroke-width=".5" stroke-linecap="round"/>
+        <g class="zz" fill="#fff8dc" font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="600">
+          <text x="257" y="180" font-size="7">z</text><text x="262" y="173" font-size="5">z</text>
+        </g>
+      </g>
+    </g></g></g>
+  </g>
+</svg>
+      </button>
+      <figcaption class="plaque"><b>Portrait officiel de la présidente</b>Serdaigle · Nimbus 2000 · Skouat (endormi)</figcaption>
+      <p class="portrait-hint" id="portrait-hint" aria-live="polite">Il bouge. Touche-le.</p>
+    </figure>
     <div class="affiche" id="affiche">
       <p class="aff-k">Prochainement</p>
       <p class="aff-t">Le site de la semaine · n°3</p>
@@ -1237,6 +1409,19 @@ h2{font-size:34px}
       f.select();
       b.textContent = 'Sélectionné, copie-le';
     }
+  });
+  /* ---------- le portrait officiel : un looping quand on le touche ---------- */
+  const LOOPINGS = ['Looping. Skouat dort toujours.', 'Double looping. Skouat ronfle.', 'Gérard a le mal de mer.', 'Kiki applaudit. (Non.)', 'Skouat dort toujours. Respect.'];
+  let loopings = 0;
+  $('#b-portrait').addEventListener('click', () => {
+    const b = document.querySelector('#portrait .boucle');
+    if (b.classList.contains('tourne')) return;
+    b.classList.add('tourne');
+    buzz(20);
+    setTimeout(() => {
+      b.classList.remove('tourne');
+      $('#portrait-hint').textContent = LOOPINGS[loopings++ % LOOPINGS.length];
+    }, reduce ? 50 : 1250);
   });
   $('#b-changer').addEventListener('click', () => go('s-mascotte'));
   $('#b-rejouer').addEventListener('click', () => location.reload());
